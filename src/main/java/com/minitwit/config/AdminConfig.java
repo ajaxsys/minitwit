@@ -16,27 +16,27 @@ import static spark.Spark.halt;
 
 public class AdminConfig {
 
-	private static final String USER_SESSION_ID = "user"; // FIXME change to admin session
-	private AdminService service;
+    private static final String USER_SESSION_ID = "user"; // FIXME change to admin session
+    private AdminService service;
 
-	public AdminConfig(AdminService service) {
-		this.service = service;
-		//staticFileLocation("/public/");
-		setupRoutes();
-	}
+    public AdminConfig(AdminService service) {
+        this.service = service;
+        //staticFileLocation("/public/");
+        setupRoutes();
+    }
 
-	private void setupRoutes() {
-		Filter commonAuthFilter =(req, res) -> {
-			User user = getAuthenticatedUser(req);
-			if (user == null) {
-				res.redirect("/public");
-				halt();
-			}
-		};
+    private void setupRoutes() {
+        Filter commonAuthFilter =(req, res) -> {
+            User user = getAuthenticatedUser(req);
+            if (user == null) {
+                res.redirect("/public");
+                halt();
+            }
+        };
 
-		get("/admin/users/", (req, res) -> {
-			return showAllUsersPages();
-		}, new FreeMarkerEngine());
+        get("/admin/users/", (req, res) -> {
+            return showAllUsersPages();
+        }, new FreeMarkerEngine());
         post("/admin/users/", (req, res) -> {
             return showAllUsersPages();
         }, new FreeMarkerEngine());
@@ -46,7 +46,7 @@ public class AdminConfig {
         delete("/admin/users/", (req, res) -> {
             return showAllUsersPages();
         }, new FreeMarkerEngine());
-		// before("/admin/users/", commonAuthFilter);
+        // before("/admin/users/", commonAuthFilter);
 
 
 
@@ -55,6 +55,7 @@ public class AdminConfig {
             return showUserDetailPage(req, res, new User());
         }, new FreeMarkerEngine());
         post("/admin/user/", (req, res) -> {
+
             String userName = mustNonEmptyInputOr400(req, "userName");
             String email = mustNonEmptyInputOr400(req, "email");
 
@@ -72,7 +73,7 @@ public class AdminConfig {
 
 
 
-		get("/admin/user/:id/", (req, res) -> {
+        get("/admin/user/:id/", (req, res) -> {
             int userId = getUserIdOr400(req);
             User profileUser = service.getUserbyId(userId);
             if (profileUser == null) {
@@ -80,7 +81,7 @@ public class AdminConfig {
             }
             return showUserDetailPage(req, res, profileUser);
         }, new FreeMarkerEngine());
-		put("/admin/user/:id/", (req, res) -> {
+        put("/admin/user/:id/", (req, res) -> {
             int userId = getUserIdOr400(req);
             String userName = mustNonEmptyInputOr400(req, "userName");
             String email = mustNonEmptyInputOr400(req, "email");
@@ -100,8 +101,8 @@ public class AdminConfig {
             return null;
 
             //return showAllUsersPages(); //showUserDetailPage(req, res, profileUser);
-		});
-		delete("/admin/user/:id/", (req, res) -> {
+        });
+        delete("/admin/user/:id/", (req, res) -> {
             int userId = getUserIdOr400(req);
             User profileUser = service.getUserbyId(userId);
             if (profileUser == null) {
@@ -115,11 +116,11 @@ public class AdminConfig {
             //res.redirect("/admin/users/", 302); // FIXME server side redirect ?
             halt();
             return null;
-			//return showAllUsersPages();
-		});
+            //return showAllUsersPages();
+        });
         //before("/admin/user/:id/", commonAuthFilter);
 
-	}
+    }
 
     private int getUserIdOr400(Request req) {
         String userId = req.params(":id");
@@ -151,7 +152,7 @@ public class AdminConfig {
     }
 
     private User getAuthenticatedUser(Request request) {
-			return request.session().attribute(USER_SESSION_ID);
-		}
+            return request.session().attribute(USER_SESSION_ID);
+        }
 
 }

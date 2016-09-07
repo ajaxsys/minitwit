@@ -62,7 +62,7 @@
             type: $form.attr('method'),
             data: {
                 userName : $('#userName').val(),
-                email : $('#userName').val()
+                email : $('#email').val()
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log("Error: " + errorThrown);

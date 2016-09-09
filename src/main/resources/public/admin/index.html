@@ -119,6 +119,145 @@
 
     <hr>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">
+                                    氏名</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="username" placeholder="" required>
+                                </div>
+                                <label for="inputEmail3" class="col-sm-2 control-label">
+                                    メールアドレス</label>
+                                <div class="col-sm-4">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="corpname" class="col-sm-2 control-label">
+                                    企業名</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="corpname" placeholder="" required>
+                                </div>
+                                <label class="col-sm-2 control-label">
+                                    状態</label>
+                                <div class="col-sm-4">
+                                    <label class="radio-inline" for="statusOK">
+                                        <input type="radio" name="status" id="statusOK">有効</label>
+                                    <label class="radio-inline" for="statusNG" >
+                                        <input type="radio" name="status" id="statusNG">無効</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-lg" style="width:150px">
+                                        検索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 text-left" style="height:82px; padding-top:28px"><a class="btn btn-primary" href="#">管理者追加</a></div>
+            <div class="col-sm-6 text-right">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>氏名</th>
+                        <th>所属</th>
+                        <th>最後ログイン時間</th>
+                        <th>状態</th>
+                        <th>変更</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>保サ　太郎</td>
+                        <td>本社</td>
+                        <td>2016/07/07 12:34</td>
+                        <td>有効</td>
+                        <td><a href="#">変更</a></td>
+                    </tr>
+                    <tr>
+                        <td>保サ　次郎</td>
+                        <td>本社</td>
+                        <td>2016/07/07 12:34</td>
+                        <td>有効</td>
+                        <td><a href="#">変更</a></td>
+                    </tr>
+                    <tr>
+                        <td>保サ　三郎</td>
+                        <td>本社</td>
+                        <td>2016/07/07 12:34</td>
+                        <td>有効</td>
+                        <td><a href="#">変更</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+
+            <form id="userDetail" method="">
+
+                <input class="hidden" type="hidden" value="${user.id!}" name="userId">
+                <div class="form-group row">
+                    <label for="userName" class="col-xs-2 col-form-label">ユーザ名</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" value="${user.username!}" pattern=".{1,}" required title="１文字以上が必須" name="userName" id="userName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-xs-2 col-form-label">Eメール</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="search" value="${user.email!}" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" method="put">更新</button>
+                <button type="submit" class="btn btn-danger" method="delete">削除</button>
+                <a class="btn btn-warning" href="/admin/users/">キャンセル</a>
+                <button type="submit" class="btn btn-primary" method="post">追加</button>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+    <hr>
+
+
     <!-- /.container -->
 
     <!-- jQuery -->

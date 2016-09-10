@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>システム管理者</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/logo-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+    <!-- Add Button helper (this is optional) -->
+    <link rel="stylesheet" type="text/css" href="./fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+    <!-- Add Thumbnail helper (this is optional) -->
+    <link rel="stylesheet" type="text/css" href="./fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="images/logo.png" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">管理者管理</a>
+                    </li>
+                    <li>
+                        <a href="#">保サ管理</a>
+                    </li>
+                    <li>
+                        <a href="#">代理店管理</a>
+                    </li>
+                    <li class="menu-item dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            工場管理
+                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">工場</a>
+                            </li>
+                            <li>
+                                <a href="#">工場員</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            お客様管理
+                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">お客様一覧</a>
+                            </li>
+                            <li>
+                                <a href="#">案件一覧</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Non-collapsing right-side icons -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" type="button" class="btn btn-default btn-lg">ログアウト</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+        <a class="grouped_elements" data-fancybox-group="gallery" href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-1.jpg" title="11">aaa</a>
+        <a class="grouped_elements" data-fancybox-group="gallery" href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-2.jpg" title="12"><img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-2.jpg"></a>
+        <a class="grouped_elements" data-fancybox-group="gallery" href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13"><img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg"></a>
+
+    </div>
+
+
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="./fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="./fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+    <script type="text/javascript" src="./fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    <style type="text/css">
+        .fancybox-nav {
+            width: 60px;
+        }
+
+        .fancybox-nav span {
+            visibility: visible;
+            opacity: 0.5;
+        }
+
+        .fancybox-nav:hover span {
+            opacity: 1;
+        }
+
+        .fancybox-next {
+            right: -80px;
+        }
+
+        .fancybox-prev {
+            left: -80px;
+        }
+
+    </style>
+
+
+    <script>
+        $("a.grouped_elements").fancybox({
+            openEffect  : 'none',
+            closeEffect : 'none',
+
+            prevEffect : 'none',
+            nextEffect : 'none',
+
+            closeBtn  : false,
+
+            helpers : {
+                title : {
+                    type : 'inside'
+                },
+                buttons	: {},
+                thumbs : {
+                    width  : 50,
+                    height : 50
+                }
+            },
+
+            afterLoad : function() {
+                this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+            }
+
+        });
+    </script>
+</body>
+
+</html>

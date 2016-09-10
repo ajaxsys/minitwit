@@ -110,6 +110,31 @@
 
     </div>
 
+    <script type="text/template" id="btnTemplate">
+        <div class="">
+            <div class="row text-center">
+                <p>
+                    <input type="file" id="myFileInput" style="display:none;" />
+                    <a type="button" href="#" onclick="document.getElementById('myFileInput').click()">写真を変更</a>
+                </p>
+            </div>
+
+            <div class="row text-center">
+                <p>
+                    {{comment}}
+                </p>
+            </div>
+
+            <div class="row text-center">
+                <p>
+                    <button type="submit" class="btn btn-primary" method="put">更新</button>
+                    <a class="btn btn-warning" href="/admin/users/">キャンセル</a>
+                    <button type="submit" class="btn btn-danger" method="delete">削除</button>
+                </p>
+            </div>
+        </div>
+    </script>
+
 
     <!-- /.container -->
 
@@ -169,8 +194,14 @@
             },
 
             afterLoad : function() {
-                this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
-            }
+                var comment = '<b>Image</b> ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+
+                this.title = $('#btnTemplate').html().replace('{{comment}}', comment);
+            },
+//            afterShow : function () {
+//                var myContent = '<div id="myContent">{my html content here}</div>';
+//                $(".fancybox-wrap").append( $('#btnTemplate').html() );
+//            }
 
         });
     </script>

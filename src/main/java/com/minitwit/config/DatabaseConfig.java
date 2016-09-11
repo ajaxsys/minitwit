@@ -20,6 +20,7 @@ public class DatabaseConfig {
 				.addScript("sql/create-db.sql")
 				.addScript("sql/insert-data.sql")
 				.build();
+
 		return db;
 	}
 

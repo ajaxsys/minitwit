@@ -6,7 +6,7 @@ import spark.Request;
 import spark.utils.StringUtils;
 
 import static spark.Spark.halt;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 public class LoginConfig {
 
@@ -20,7 +20,7 @@ public class LoginConfig {
 
     private void setupRoutes() {
 
-        post("/admin/login", (req, res) -> { // FIXME juse mock
+        post("/common/login", (req, res) -> { // FIXME juse mock
             User user = new User();
             user.setEmail("modk@mock.jp");
             addAuthenticatedUser(req, user);
@@ -30,11 +30,26 @@ public class LoginConfig {
             }
             return "ok";
         });
+        get("/common/logout", (req, res) -> {
+            removeAuthenticatedUser(req);
+            res.redirect("/login/");
+            return "ok";
+        });
     }
 
     private void addAuthenticatedUser(Request request, User u) {
-        request.session().attribute(USER_SESSION_ID, u);
 
+        request.session().attribute(USER_SESSION_ID, u);
+    }
+
+    private void removeAuthenticatedUser(Request request) {
+
+        request.session().removeAttribute(USER_SESSION_ID);
+    }
+
+    private User getAuthenticatedUser(Request request) {
+
+        return request.session().attribute(USER_SESSION_ID);
     }
 
 }

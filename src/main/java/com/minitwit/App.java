@@ -1,11 +1,13 @@
 package com.minitwit;
 
-import com.minitwit.config.AdminConfig;
-import com.minitwit.service.impl.AdminService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.minitwit.config.LoginConfig;
+import com.minitwit.service.impl.LoginService;
+import com.minitwit.config.AdminConfig;
+import com.minitwit.service.impl.AdminService;
 import com.minitwit.config.WebConfig;
 import com.minitwit.service.impl.MiniTwitService;
 
@@ -18,6 +20,7 @@ public class App {
 
 		new WebConfig(ctx.getBean(MiniTwitService.class));
 		new AdminConfig(ctx.getBean(AdminService.class));
+		new LoginConfig(ctx.getBean(LoginService.class));
 
         ctx.registerShutdownHook();
     }

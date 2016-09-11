@@ -46,7 +46,14 @@
 
 <script>
     $(document).ready(function() {
-        $('#userList').DataTable();
+        $('#userList').DataTable({
+            "bSort": false,
+            bFilter: false,
+            // bInfo:
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Japanese.json"
+            }
+        });
     });
 
 </script>

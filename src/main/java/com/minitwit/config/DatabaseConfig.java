@@ -13,7 +13,7 @@ public class DatabaseConfig {
 
 	@Bean
 	public DataSource dataSource() {
-		
+
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		EmbeddedDatabase db = builder
 				.setType(EmbeddedDatabaseType.HSQL)

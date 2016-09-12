@@ -7,10 +7,16 @@ import com.minitwit.model.User;
 
 public interface MessageDao {
 	List<Message> getUserTimelineMessages(User user);
-	
+
 	List<Message> getUserFullTimelineMessages(User user);
-	
+
 	List<Message> getPublicTimelineMessages();
-	
+
 	void insertMessage(Message m);
+
+	List<Message> selectMessagesByPage(
+		int start,
+		int length);
+
+	int getMessageCount();
 }

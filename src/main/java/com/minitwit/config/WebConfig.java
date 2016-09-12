@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.minitwit.util.DataTables;
 import org.apache.commons.beanutils.BeanUtils;
 import org.eclipse.jetty.util.MultiMap;
 import org.eclipse.jetty.util.UrlEncoded;
@@ -19,24 +20,23 @@ import com.minitwit.model.LoginResult;
 import com.minitwit.model.Message;
 import com.minitwit.model.User;
 import com.minitwit.service.impl.MiniTwitService;
-
 import spark.ModelAndView;
 import spark.Request;
 import spark.template.freemarker.FreeMarkerEngine;
 import spark.utils.StringUtils;
 
 public class WebConfig {
-	
+
 	private static final String USER_SESSION_ID = "user";
 	private MiniTwitService service;
-	 
+
 
 	public WebConfig(MiniTwitService service) {
 		this.service = service;
 		staticFileLocation("/public");
 		setupRoutes();
 	}
-	
+
 	private void setupRoutes() {
 		/*
 		 * Shows a users timeline or if no user is logged in,
@@ -61,7 +61,7 @@ public class WebConfig {
 			}
 		});
 
-		
+
 		/*
 		 * Displays the latest messages of all users.
 		 */
@@ -74,22 +74,22 @@ public class WebConfig {
 			map.put("messages", messages);
 			return new ModelAndView(map, "timeline.ftl");
         }, new FreeMarkerEngine());
-		
-		
+
+
 		/*
 		 * Displays a user's tweets.
 		 */
 		get("/t/:username", (req, res) -> {
 			String username = req.params(":username");
 			User profileUser = service.getUserbyUsername(username);
-			
+
 			User authUser = getAuthenticatedUser(req);
 			boolean followed = false;
 			if(authUser != null) {
 				followed = service.isUserFollower(authUser, profileUser);
 			}
 			List<Message> messages = service.getUserTimelineMessages(profileUser);
-			
+
 			Map<String, Object> map = new HashMap<>();
 			map.put("pageTitle", username + "'s Timeline");
 			map.put("user", authUser);
@@ -108,8 +108,8 @@ public class WebConfig {
 				halt(404, "User not Found");
 			}
 		});
-		
-		
+
+
 		/*
 		 * Adds the current user as follower of the given user.
 		 */
@@ -117,7 +117,7 @@ public class WebConfig {
 			String username = req.params(":username");
 			User profileUser = service.getUserbyUsername(username);
 			User authUser = getAuthenticatedUser(req);
-			
+
 			service.followUser(authUser, profileUser);
 			res.redirect("/t/" + username);
 			return null;
@@ -136,8 +136,8 @@ public class WebConfig {
 				halt(404, "User not Found");
 			}
 		});
-		
-		
+
+
 		/*
 		 * Removes the current user as follower of the given user.
 		 */
@@ -145,7 +145,7 @@ public class WebConfig {
 			String username = req.params(":username");
 			User profileUser = service.getUserbyUsername(username);
 			User authUser = getAuthenticatedUser(req);
-			
+
 			service.unfollowUser(authUser, profileUser);
 			res.redirect("/t/" + username);
 			return null;
@@ -164,8 +164,8 @@ public class WebConfig {
 				halt(404, "User not Found");
 			}
 		});
-		
-		
+
+
 		/*
 		 * Presents the login form or redirect the user to
 		 * her timeline if it's already logged in
@@ -184,7 +184,7 @@ public class WebConfig {
 			Map<String, Object> map = new HashMap<>();
 			User user = new User();
 			try {
-				MultiMap<String> params = new MultiMap<String>();
+				MultiMap<String> params = new MultiMap<>();
 				UrlEncoded.decodeTo(req.body(), params, "UTF-8", -1);
 				BeanUtils.populate(user, params);
 			} catch (Exception e) {
@@ -212,8 +212,8 @@ public class WebConfig {
 				halt();
 			}
 		});
-		
-		
+
+
 		/*
 		 * Presents the register form or redirect the user to
 		 * her timeline if it's already logged in
@@ -229,7 +229,7 @@ public class WebConfig {
 			Map<String, Object> map = new HashMap<>();
 			User user = new User();
 			try {
-				MultiMap<String> params = new MultiMap<String>();
+				MultiMap<String> params = new MultiMap<>();
 				UrlEncoded.decodeTo(req.body(), params, "UTF-8", -1);
 				BeanUtils.populate(user, params);
 			} catch (Exception e) {
@@ -262,14 +262,14 @@ public class WebConfig {
 				halt();
 			}
 		});
-		
-		
+
+
 		/*
 		 * Registers a new message for the user.
 		 */
 		post("/message", (req, res) -> {
 			User user = getAuthenticatedUser(req);
-			MultiMap<String> params = new MultiMap<String>();
+			MultiMap<String> params = new MultiMap<>();
 			UrlEncoded.decodeTo(req.body(), params, "UTF-8", -1);
 			Message m = new Message();
 			m.setUserId(user.getId());
@@ -289,8 +289,8 @@ public class WebConfig {
 				halt();
 			}
 		});
-		
-		
+
+
 		/*
 		 * Logs the user out and redirects to the public timeline
 		 */
@@ -299,16 +299,37 @@ public class WebConfig {
 			res.redirect("/public");
 			return null;
         });
+
+
+
+		get("/message/paging", (req, res)->{
+
+			return DataTables.pagingAjax(
+				req,
+				res,
+				(start, length)->
+					service.selectMessagesByPage(
+						start,
+						length),
+				(message, rowJson)-> {
+					rowJson.put(message.getUsername());
+					rowJson.put(message.getText());
+					rowJson.put(message.getPubDate());
+				},
+				()->
+                     service.getMessageCount());
+
+		});
 	}
 
 	private void addAuthenticatedUser(Request request, User u) {
 		request.session().attribute(USER_SESSION_ID, u);
-		
+
 	}
 
 	private void removeAuthenticatedUser(Request request) {
 		request.session().removeAttribute(USER_SESSION_ID);
-		
+
 	}
 
 	private User getAuthenticatedUser(Request request) {

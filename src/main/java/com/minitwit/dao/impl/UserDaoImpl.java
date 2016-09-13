@@ -16,90 +16,90 @@ import com.minitwit.model.User;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-	
-	private NamedParameterJdbcTemplate template;
 
-	@Autowired
-	public UserDaoImpl(DataSource ds) {
-		template = new NamedParameterJdbcTemplate(ds);
-	}
+    private NamedParameterJdbcTemplate template;
 
-	@Override
-	public User getUserbyUsername(String username) {
-		Map<String, Object> params = new HashMap<String, Object>();
+    @Autowired
+    public UserDaoImpl(DataSource ds) {
+        template = new NamedParameterJdbcTemplate(ds);
+    }
+
+    @Override
+    public User getUserbyUsername(String username) {
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("name", username);
-        
-		String sql = "SELECT * FROM user WHERE username=:name";
-		
+
+        String sql = "SELECT * FROM user WHERE username=:name";
+
         List<User> list = template.query(
                     sql,
                     params,
                     userMapper);
-        
+
         User result = null;
         if(list != null && !list.isEmpty()) {
-        	result = list.get(0);
+            result = list.get(0);
         }
-        
-		return result;
-	}
 
-	@Override
-	public void insertFollower(User follower, User followee) {
-		Map<String, Object> params = new HashMap<String, Object>();
-        params.put("follower", follower.getId());
-        params.put("followee", followee.getId());
-        
-		String sql = "insert into follower (follower_id, followee_id) values (:follower, :followee)";
-		
-        template.update(sql,  params);
-	}
+        return result;
+    }
 
-	@Override
-	public void deleteFollower(User follower, User followee) {
-		Map<String, Object> params = new HashMap<String, Object>();
+    @Override
+    public void insertFollower(User follower, User followee) {
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("follower", follower.getId());
         params.put("followee", followee.getId());
-        
-		String sql = "delete from follower where follower_id = :follower and followee_id = :followee";
-		
+
+        String sql = "insert into follower (follower_id, followee_id) values (:follower, :followee)";
+
         template.update(sql,  params);
-	}
-	
-	@Override
-	public boolean isUserFollower(User follower, User followee) {
-		Map<String, Object> params = new HashMap<String, Object>();
+    }
+
+    @Override
+    public void deleteFollower(User follower, User followee) {
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("follower", follower.getId());
         params.put("followee", followee.getId());
-        
-		String sql = "select count(1) from follower where " +
+
+        String sql = "delete from follower where follower_id = :follower and followee_id = :followee";
+
+        template.update(sql,  params);
+    }
+
+    @Override
+    public boolean isUserFollower(User follower, User followee) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("follower", follower.getId());
+        params.put("followee", followee.getId());
+
+        String sql = "select count(1) from follower where " +
             "follower.follower_id = :follower and follower.followee_id = :followee";
-		
-		Long l = template.queryForObject(sql, params, Long.class);
-		
-		return l > 0;
-	}
 
-	@Override
-	public void registerUser(User user) {
-		Map<String, Object> params = new HashMap<String, Object>();
-        params.put("username", user.getUsername());
-        params.put("email", user.getEmail());
-        params.put("pw", user.getPassword());
-        
-		String sql = "insert into user (username, email, pw) values (:username, :email, :pw)";
-		
+        Long l = template.queryForObject(sql, params, Long.class);
+
+        return l > 0;
+    }
+
+    @Override
+    public void registerUser(User user) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put(User.COLUMN.username.name(), user.getUsername());
+        params.put(User.COLUMN.email.name(), user.getEmail());
+        params.put(User.COLUMN.pw.name(), user.getPassword());
+
+        String sql = "insert into user (username, email, pw) values (:username, :email, :pw)";
+
         template.update(sql,  params);
-	}
+    }
 
-	private RowMapper<User> userMapper = (rs, rowNum) -> {
-		User u = new User();
-		
-		u.setId(rs.getInt("user_id"));
-		u.setEmail(rs.getString("email"));
-		u.setUsername(rs.getString("username"));
-		u.setPassword(rs.getString("pw"));
-		
-		return u;
-	};
+    private RowMapper<User> userMapper = (rs, rowNum) -> {
+        User u = new User();
+
+        u.setId(rs.getInt(User.COLUMN.user_id.name()));
+        u.setEmail(rs.getString(User.COLUMN.email.name()));
+        u.setUsername(rs.getString(User.COLUMN.username.name()));
+        u.setPassword(rs.getString(User.COLUMN.pw.name()));
+
+        return u;
+    };
 }

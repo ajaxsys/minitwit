@@ -2,6 +2,7 @@ package com.minitwit.config;
 
 import com.minitwit.model.User;
 import com.minitwit.service.impl.AdminService;
+import com.minitwit.util.IColumn;
 import com.minitwit.util.StringUtil;
 import spark.*;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -56,8 +57,8 @@ public class AdminConfig {
         }, new FreeMarkerEngine());
         post("/admin/user/", (req, res) -> {
 
-            String userName = mustNonEmptyInputOr400(req, "userName");
-            String email = mustNonEmptyInputOr400(req, "email");
+            String userName = mustNonEmptyInputOr400(req, User.COLUMN.username);
+            String email = mustNonEmptyInputOr400(req, User.COLUMN.email);
 
             User user = new User();
             user.setUsername(userName);
@@ -83,8 +84,8 @@ public class AdminConfig {
         }, new FreeMarkerEngine());
         put("/admin/user/:id/", (req, res) -> {
             int userId = getUserIdOr400(req);
-            String userName = mustNonEmptyInputOr400(req, "userName");
-            String email = mustNonEmptyInputOr400(req, "email");
+            String userName = mustNonEmptyInputOr400(req, User.COLUMN.username);
+            String email = mustNonEmptyInputOr400(req, User.COLUMN.email);
 
             User profileUser = service.getUserbyId(userId);
             if (profileUser == null) {
@@ -130,8 +131,8 @@ public class AdminConfig {
         return Integer.parseInt(userId);
     }
 
-    private String mustNonEmptyInputOr400(Request req, String paramName) {
-        String paramVal = req.queryParams(paramName);
+    private String mustNonEmptyInputOr400(Request req, IColumn paramName) {
+        String paramVal = req.queryParams(paramName.toString());
         if (StringUtils.isEmpty(paramVal)) {
             halt(400, "Bad request " + paramVal);
         }

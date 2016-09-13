@@ -28,6 +28,7 @@ class DataTables {
         int apply();
     }
     public static class SearchCondition {
+        private static final Pattern INT = Pattern.compile("-?[0-9]+");
 
         private Request req;
 
@@ -35,7 +36,10 @@ class DataTables {
             this.req = req;
         }
 
-        public Optional<String> getStr(String colomnName) {
+        public Optional<String> getStr(IColumn colomnName) {
+            return getStr(colomnName.toString());
+        }
+        private Optional<String> getStr(String colomnName) {
             Optional<String> dataTalbeParamName =
                 req.queryParams().
                     stream().
@@ -60,9 +64,11 @@ class DataTables {
             return dataTalbeParamValue;
         }
 
-        Pattern INT = Pattern.compile("-?[0-9]+");
 
-        public Optional<Integer> getInt(String name) {
+        public Optional<Integer> getInt(IColumn colomnName) {
+            return getInt(colomnName.toString());
+        }
+        private Optional<Integer> getInt(String name) {
             return getStr(name).map(
                 v->
                     INT.matcher(v).matches() ?

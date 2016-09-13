@@ -201,7 +201,7 @@ public class WebConfig {
             } else {
                 map.put("error", result.getError());
             }
-            map.put("username", user.getUsername());
+            map.put(User.COLUMN.username.name(), user.getUsername());
             return new ModelAndView(map, "login.ftl");
         }, new FreeMarkerEngine());
         /*
@@ -250,8 +250,8 @@ public class WebConfig {
                 }
             }
             map.put("error", error);
-            map.put("username", user.getUsername());
-            map.put("email", user.getEmail());
+            map.put(User.COLUMN.username.toString(), user.getUsername());
+            map.put(User.COLUMN.email.toString(), user.getEmail());
             return new ModelAndView(map, "register.ftl");
         }, new FreeMarkerEngine());
         /*
@@ -315,7 +315,7 @@ public class WebConfig {
                     service.selectMessagesByPage(
                         start,
                         length,
-                        params.getStr("userName")),
+                        params.getStr(User.COLUMN.username)),
                 (message, rowJson)-> {
                     rowJson.put(message.getUsername());
                     rowJson.put(message.getText());
@@ -324,7 +324,7 @@ public class WebConfig {
                 },
                 ()->
                      service.getMessageCount(
-                         params.getStr("userName")));
+                         params.getStr(User.COLUMN.username)));
 
         });
     }

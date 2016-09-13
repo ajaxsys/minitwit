@@ -88,7 +88,7 @@ public class MessageDaoImpl implements MessageDao {
         sb.append("where message.author_id = user.user_id ");
         searchUserName.ifPresent(
             v-> {
-                params.put("username", "%"+v+"%");
+                params.put(User.COLUMN.username.name(), "%"+v+"%");
                 sb.append("and user.username like :username ");
             });
 
@@ -116,7 +116,7 @@ public class MessageDaoImpl implements MessageDao {
 
                 searchUserName.ifPresent(
                     v-> {
-                        params.put("username", "%"+v+"%");
+                        params.put(User.COLUMN.username.name(), "%"+v+"%");
                         sb.append("and user.username like :username ");
                     });
             },

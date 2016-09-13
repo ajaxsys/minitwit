@@ -8,6 +8,9 @@
 </head>
 <body>
 <div class="container">
+    <div class="row">
+            ユーザ名<input type="text" id="byUserName"><input id="btnSearch" type="submit" value="検索">
+    </div>
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -19,19 +22,37 @@
     </table>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.js"></script>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable( {
+        // Setup - add a text input to each footer cell
+
+        var $table = $('#example').DataTable( {
+            "columnDefs": [
+                { "name": "userName", "targets": 0 },
+                { "name": "text",     "targets": 1 },
+                { "name": "time",     "targets": 2 },
+                // { "name": "email" },
+              ],
             'processing': true,
             'serverSide': true,
             'ajax': '/message/paging',
             'bSort': false,
-            'bFilter': false,
+            'bFilter': true,
             'language': {
                 "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Japanese.json"
             }
+        })
+
+        $('#btnSearch').click(function(){
+            $table.column('userName:name').search(
+                $('#byUserName').val(),
+                false, // regexp
+                false  // smart search: https://datatables.net/examples/api/regex.html
+            ).draw();
         });
+
+
     } );
 </script>
 </body>

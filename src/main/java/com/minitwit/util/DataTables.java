@@ -6,6 +6,9 @@ import spark.Request;
 import spark.Response;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Sample reference :
@@ -15,7 +18,7 @@ public
 class DataTables {
 
     public interface IGetPagingResult<E> {
-        List<E> apply(int start, int length);
+        List<E> apply(int start, int length, SearchCondition param);
     }
     public interface IEachResult<E> {
         void apply(
@@ -24,6 +27,38 @@ class DataTables {
     }
     public interface IGetPagingCount {
         int apply();
+    }
+    public static class SearchCondition {
+
+        private Request req;
+
+        public SearchCondition(Request req) {
+            this.req = req;
+        }
+
+        public Optional<String> getStr(String colomnName) {
+            Optional<String> dataTalbeParamName =
+                req.queryParams().
+                    stream().
+                    filter(
+                        param->
+                            param.endsWith("[name]")
+                            &&
+                            req.queryParams(param).compareTo(colomnName) == 0).
+                    findFirst();
+
+            Optional<String> dataTalbeParamValue =
+                dataTalbeParamName.map(
+                    paramName->
+                        req.queryParams(paramName.replace("[name]", "[search][value]")));
+
+            return dataTalbeParamValue;
+        }
+
+        public Optional<Integer> getInt(String name) {
+            return Optional.empty();
+        }
+
     }
 
     public static
@@ -61,7 +96,8 @@ class DataTables {
 
         final List<E> messages = getPagingResult.apply(
                 start,
-                length);
+                length,
+                new SearchCondition(req));
 
         JSONObject result = new JSONObject();
 

@@ -1,6 +1,5 @@
 package com.minitwit.dao.impl;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +16,7 @@ import com.minitwit.dao.MessageDao;
 import com.minitwit.model.Message;
 import com.minitwit.model.User;
 import com.minitwit.util.GravatarUtil;
+import com.minitwit.util.StringUtil;
 
 @Repository
 public class MessageDaoImpl implements MessageDao {
@@ -103,12 +103,33 @@ public class MessageDaoImpl implements MessageDao {
 
     @Override
     public
-    int getMessageCount() {
-        String sql = "SELECT count(1) FROM message";
+    int getMessageCount(
+        Optional<String> searchUserName) {
+
+        StringBuilder sb = new StringBuilder();
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        StringUtil.anyPresent(
+            () -> {
+                sb.append("select count(*) from message, user ");
+                sb.append("where message.author_id = user.user_id ");
+
+                searchUserName.ifPresent(
+                    v-> {
+                        params.put("username", "%"+v+"%");
+                        sb.append("and user.username like :username ");
+                    });
+            },
+            searchUserName);
+
+        StringUtil.allEmpty(
+            ()->
+                sb.append( "SELECT count(*) FROM message"),
+            searchUserName);
 
         return template.queryForObject(
-            sql,
-            Collections.EMPTY_MAP,
+            sb.toString(),
+            params,
             Integer.class);
     }
 

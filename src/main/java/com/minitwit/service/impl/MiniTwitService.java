@@ -62,9 +62,10 @@ public class MiniTwitService {
         return messageDao.selectMessagesByPage(start, length, searchUserName);
     }
 
-    public int getMessageCount() {
+    public int getMessageCount(
+        Optional<String> searchUserName) {
 
-        return messageDao.getMessageCount();
+        return messageDao.getMessageCount(searchUserName);
     }
 
     public LoginResult checkUser(User user) {

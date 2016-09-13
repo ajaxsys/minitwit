@@ -7,8 +7,7 @@ import spark.Response;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.regex.Pattern;
 
 /**
  * Sample reference :
@@ -18,7 +17,7 @@ public
 class DataTables {
 
     public interface IGetPagingResult<E> {
-        List<E> apply(int start, int length, SearchCondition param);
+        List<E> apply(int start, int length);
     }
     public interface IEachResult<E> {
         void apply(
@@ -49,16 +48,27 @@ class DataTables {
 
             Optional<String> dataTalbeParamValue =
                 dataTalbeParamName.map(
-                    paramName->
-                        req.queryParams(paramName.replace("[name]", "[search][value]")));
+                    paramName-> {
+                        String value = req.queryParams(
+                            paramName.replace("[name]", "[search][value]"));
+
+                        return StringUtil.isBlank(value) ?
+                            null:
+                            value;
+                    });
 
             return dataTalbeParamValue;
         }
 
-        public Optional<Integer> getInt(String name) {
-            return Optional.empty();
-        }
+        Pattern INT = Pattern.compile("-?[0-9]+");
 
+        public Optional<Integer> getInt(String name) {
+            return getStr(name).map(
+                v->
+                    INT.matcher(v).matches() ?
+                        Integer.parseInt(v) :
+                        null);
+        }
     }
 
     public static
@@ -96,8 +106,7 @@ class DataTables {
 
         final List<E> messages = getPagingResult.apply(
                 start,
-                length,
-                new SearchCondition(req));
+                length);
 
         JSONObject result = new JSONObject();
 
@@ -118,5 +127,13 @@ class DataTables {
         res.header("Cache-Control", "no-store");
 
         return result.toString();
+    }
+
+    public static
+    SearchCondition
+    parse(
+        Request req) {
+
+        return new SearchCondition(req);
     }
 }

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.minitwit.util.DataTables;
+import com.minitwit.util.DataTables.SearchCondition;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.eclipse.jetty.util.MultiMap;
 import org.eclipse.jetty.util.UrlEncoded;
@@ -304,10 +306,12 @@ public class WebConfig {
 
         get("/message/paging", (req, res)->{
 
+            SearchCondition params = DataTables.parse(req);
+
             return DataTables.pagingAjax(
                 req,
                 res,
-                (start, length, params)->
+                (start, length)->
                     service.selectMessagesByPage(
                         start,
                         length,
@@ -316,9 +320,11 @@ public class WebConfig {
                     rowJson.put(message.getUsername());
                     rowJson.put(message.getText());
                     rowJson.put(message.getPubDate());
+                    rowJson.put("email not used");
                 },
                 ()->
-                     service.getMessageCount());
+                     service.getMessageCount(
+                         params.getStr("userName")));
 
         });
     }

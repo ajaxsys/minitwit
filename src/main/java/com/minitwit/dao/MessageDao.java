@@ -20,5 +20,5 @@ public interface MessageDao {
         int length,
         Optional<String> searchUserName);
 
-    int getMessageCount();
+    int getMessageCount(Optional<String> searchUserName);
 }

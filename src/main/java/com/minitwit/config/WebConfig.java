@@ -315,7 +315,7 @@ public class WebConfig {
                     service.selectMessagesByPage(
                         start,
                         length,
-                        params.getStr("userName")),
+                        params.getStr("username")),
                 (message, rowJson)-> {
                     rowJson.put(message.getUsername());
                     rowJson.put(message.getText());
@@ -324,7 +324,7 @@ public class WebConfig {
                 },
                 ()->
                      service.getMessageCount(
-                         params.getStr("userName")));
+                         params.getStr("username")));
 
         });
     }

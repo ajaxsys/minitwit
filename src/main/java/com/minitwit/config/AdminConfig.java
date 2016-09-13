@@ -56,11 +56,11 @@ public class AdminConfig {
         }, new FreeMarkerEngine());
         post("/admin/user/", (req, res) -> {
 
-            String userName = mustNonEmptyInputOr400(req, "userName");
+            String username = mustNonEmptyInputOr400(req, "username");
             String email = mustNonEmptyInputOr400(req, "email");
 
             User user = new User();
-            user.setUsername(userName);
+            user.setUsername(username);
             user.setEmail(email);
 
             service.registerAdminUser(user);
@@ -83,7 +83,7 @@ public class AdminConfig {
         }, new FreeMarkerEngine());
         put("/admin/user/:id/", (req, res) -> {
             int userId = getUserIdOr400(req);
-            String userName = mustNonEmptyInputOr400(req, "userName");
+            String username = mustNonEmptyInputOr400(req, "username");
             String email = mustNonEmptyInputOr400(req, "email");
 
             User profileUser = service.getUserbyId(userId);
@@ -91,7 +91,7 @@ public class AdminConfig {
                 halt(404, "User not Found");
             }
 
-            profileUser.setUsername(userName);
+            profileUser.setUsername(username);
             profileUser.setEmail(email);
             service.updateUser(profileUser);
 

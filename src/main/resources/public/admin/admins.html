@@ -180,7 +180,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="the-userName">保サ　太郎</td>
+                    <td class="the-username">保サ　太郎</td>
                     <td class="the-corpname">本社</td>
                     <td class="the-lastLogin">2016/07/07 12:34</td>
                     <td class="the-status">有効</td>
@@ -211,9 +211,9 @@
 
                 <input class="hidden" type="hidden" value="${user.id!}" name="userId">
                 <div class="form-group row">
-                    <label for="userName" class="col-xs-2 col-form-label">ユーザ名</label>
+                    <label for="username" class="col-xs-2 col-form-label">ユーザ名</label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="userName" id="userName">
+                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -254,7 +254,7 @@
 
             // others
             function copyInfoToForm($row, $detailForm) {
-                $('#userName', $detailForm).val( $('.the-userName', $row).text() );
+                $('#username', $detailForm).val( $('.the-username', $row).text() );
             }
 
             function showDetail() {

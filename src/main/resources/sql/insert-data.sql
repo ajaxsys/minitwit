@@ -9,6 +9,9 @@ INSERT INTO user(user_id, username, email, pw) VALUES (8, 'user008','user008@ema
 INSERT INTO user(user_id, username, email, pw) VALUES (9, 'user009','user009@email.com','$2a$10$rbDB/WLckQTAO4St9TpMVOzSlJDrx98r2jgt9crwtsy8hCv7wIZkm');
 INSERT INTO user(user_id, username, email, pw) VALUES (10, 'user010','user010@email.com','$2a$10$rXBPyVPkaD5u7MbDckemPutPT/m.8SylMrI3su26aaV0pxP34kDwa');
 
+INSERT INTO user(user_id, username, email, pw) VALUES (11, 'userxxx','useryyy@email.com','$2a$10$rXBPyVPkaD5u7MbDckemPutPT/m.8SylMrI3su26aaV0pxP34kDwa');
+INSERT INTO message(author_id, text, pub_date) VALUES (11, 'This is a message written by user userxxx use email useryyy@email.com', TIMESTAMP '2014-01-04 11:56:22');
+
 INSERT INTO follower(follower_id, followee_id) VALUES (1, 2);
 INSERT INTO follower(follower_id, followee_id) VALUES (1, 7);
 INSERT INTO follower(follower_id, followee_id) VALUES (1, 10);
@@ -255,3 +258,4 @@ INSERT INTO message(author_id, text, pub_date) VALUES (10, 'This is a message wr
 INSERT INTO message(author_id, text, pub_date) VALUES (10, 'This is a message written by user user010', TIMESTAMP '2014-10-16 09:40:11');
 INSERT INTO message(author_id, text, pub_date) VALUES (10, 'This is a message written by user user010', TIMESTAMP '2014-07-10 08:38:31');
 INSERT INTO message(author_id, text, pub_date) VALUES (10, 'This is a message written by user user010', TIMESTAMP '2014-01-04 11:56:22');
+

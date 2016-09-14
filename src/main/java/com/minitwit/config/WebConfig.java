@@ -304,7 +304,7 @@ public class WebConfig {
 
 
 
-        get("/message/paging", (req, res)->{
+        get("/message/paging_bk", (req, res)->{
 
             SearchCondition params = DataTables.parse(req);
 
@@ -312,7 +312,7 @@ public class WebConfig {
                 req,
                 res,
                 (start, length)->
-                    service.selectMessagesByPage(
+                    service.getMessagesByPage(
                         start,
                         length,
                         params.getStr("username")),
@@ -325,6 +325,32 @@ public class WebConfig {
                 ()->
                      service.getMessageCount(
                          params.getStr("username")));
+
+        });
+
+        get("/message/paging", (req, res)->{
+
+            User user = DataTables.parse(
+                req,
+                new User());
+
+            return DataTables.pagingAjax(
+                req,
+                res,
+                (start, length)->
+                    service.getMessagesByPage(
+                        start,
+                        length,
+                        user),
+                (message, rowJson)-> {
+                    rowJson.put(message.getUsername());
+                    rowJson.put(message.getText());
+                    rowJson.put(message.getPubDate());
+                    rowJson.put("email not used");
+                },
+                ()->
+                     service.getMessageCount(
+                         user));
 
         });
     }

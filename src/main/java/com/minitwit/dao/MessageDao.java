@@ -15,10 +15,18 @@ public interface MessageDao {
 
     void insertMessage(Message m);
 
-    List<Message> selectMessagesByPage(
+    @Deprecated
+    List<Message> getMessagesByPage(
         int start,
         int length,
         Optional<String> searchUserName);
 
+    List<Message> getMessagesByPage(
+        int start,
+        int length,
+        User searchCondition);
+
+    @Deprecated
     int getMessageCount(Optional<String> searchUserName);
+    int getMessageCount(User searchCondition);
 }

@@ -71,9 +71,10 @@ public class MessageDaoImpl implements MessageDao {
         return result;
     }
 
+    @Deprecated
     @Override
     public
-    List<Message> selectMessagesByPage(
+    List<Message> getMessagesByPage(
         int start,
         int length,
         Optional<String> searchUserName) {
@@ -101,6 +102,7 @@ public class MessageDaoImpl implements MessageDao {
         return result;
     }
 
+    @Deprecated
     @Override
     public
     int getMessageCount(
@@ -142,6 +144,80 @@ public class MessageDaoImpl implements MessageDao {
 
         String sql = "insert into message (author_id, text, pub_date) values (:userId, :text, :pubDate)";
         template.update(sql, params);
+    }
+
+    @Override
+    public
+    List<Message> getMessagesByPage(
+        int start,
+        int length,
+        User searchConditon) {
+
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        params.put("limit", length);
+        params.put("offset", start);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("select message.*, user.* from message, user ");
+        sb.append("where message.author_id = user.user_id ");
+        searchConditon.mayNullUsername().ifPresent(
+            v-> {
+                params.put("username", "%"+v+"%");
+                sb.append("and user.username like :username ");
+            });
+        searchConditon.mayNullEmail().ifPresent(
+            v-> {
+                params.put("email", "%"+v+"%");
+                sb.append("and user.email like :email ");
+            });
+
+        sb.append("order by message.pub_date desc ");
+        sb.append("limit :limit OFFSET :offset");
+
+        List<Message> result = template.query(
+            sb.toString(), params, messageMapper);
+
+        return result;
+    }
+
+    @Override
+    public
+    int getMessageCount(
+        User searchConditon) {
+
+        StringBuilder sb = new StringBuilder();
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        StringUtil.anyPresent(
+            () -> {
+                sb.append("select count(*) from message, user ");
+                sb.append("where message.author_id = user.user_id ");
+
+                searchConditon.mayNullUsername().ifPresent(
+                    v-> {
+                        params.put("username", "%"+v+"%");
+                        sb.append("and user.username like :username ");
+                    });
+                searchConditon.mayNullEmail().ifPresent(
+                    v-> {
+                        params.put("email", "%"+v+"%");
+                        sb.append("and user.email like :email ");
+                    });
+            },
+            searchConditon.mayNullUsername(),
+            searchConditon.mayNullEmail());
+
+        StringUtil.allEmpty(
+            ()->
+                sb.append( "SELECT count(*) FROM message"),
+            searchConditon.mayNullUsername(),
+            searchConditon.mayNullEmail());
+
+        return template.queryForObject(
+            sb.toString(),
+            params,
+            Integer.class);
     }
 
     private RowMapper<Message> messageMapper = (rs, rowNum) -> {

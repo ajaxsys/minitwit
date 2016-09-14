@@ -74,9 +74,10 @@ public class StringUtil {
         Optional<?>... optionals) {
 
         for (Optional<?> optional : optionals) {
-            if (!optional.isPresent())
+            if (!optional.isPresent()) {
                 doVoid.apply();
                 return;
+            }
         }
     }
     public static
@@ -86,9 +87,10 @@ public class StringUtil {
         Optional<?>... optionals) {
 
         for (Optional<?> optional : optionals) {
-            if (optional.isPresent())
+            if (optional.isPresent()) {
                 doVoid.apply();
                 return;
+            }
         }
     }
 

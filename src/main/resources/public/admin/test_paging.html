@@ -11,8 +11,8 @@
 <div class="container">
     <div class="row">
         <form id="searchForm">
-                           ユーザ名<input type="text" data-name="username"><br>
-                           メール<input type="text" data-name="email"><br>
+                           ユーザ名<input type="text" data-name="username" value="userxxx"><br>
+                           メール<input type="text" data-name="email" value="useryyy@"><br>
             <input id="btnSearch" type="submit" value="検索">
         </form>
     </div>
@@ -65,15 +65,13 @@
 
             $(':input', this).each(function(){
                 var val = $.trim($(this).val());
-                if ( val !== '' ) {
-                    $table.
-                        column(
-                            $(this).attr('data-name') + ':name').
-                        search(
-                            val,
-                            false, // smart search: https://datatables.net/examples/api/regex.html
-                            false);
-                }
+                $table.
+                    column(
+                        $(this).attr('data-name') + ':name').
+                    search(
+                        val,
+                        false, // smart search: https://datatables.net/examples/api/regex.html
+                        false);
             });
 
             $table.draw();

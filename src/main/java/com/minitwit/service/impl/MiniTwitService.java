@@ -54,19 +54,36 @@ public class MiniTwitService {
         messageDao.insertMessage(message);
     }
 
-    public List<Message> selectMessagesByPage(
+    @Deprecated
+    public List<Message> getMessagesByPage(
         int start,
         int length,
         Optional<String> searchUserName) {
 
-        return messageDao.selectMessagesByPage(start, length, searchUserName);
+        return messageDao.getMessagesByPage(start, length, searchUserName);
     }
 
+    public List<Message> getMessagesByPage(
+        int start,
+        int length,
+        User searchConditon) {
+
+        return messageDao.getMessagesByPage(start, length, searchConditon);
+    }
+
+    @Deprecated
     public int getMessageCount(
         Optional<String> searchUserName) {
 
         return messageDao.getMessageCount(searchUserName);
     }
+
+    public int getMessageCount(
+        User searchConditon) {
+
+        return messageDao.getMessageCount(searchConditon);
+    }
+
 
     public LoginResult checkUser(User user) {
         LoginResult result = new LoginResult();

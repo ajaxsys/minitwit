@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>システム管理者</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/logo-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="images/logo.png" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/admin/admins">管理者管理</a>
+                    </li>
+                    <li>
+                        <a href="/admin/hosas">保サ管理</a>
+                    </li>
+                    <li>
+                        <a href="/admin/distributors">代理店管理</a>
+                    </li>
+                    <li class="menu-item dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            工場管理
+                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/admin/workshops">工場</a>
+                            </li>
+                            <li>
+                                <a href="/admin/staffs">工場員</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            お客様管理
+                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/admin/customers">お客様一覧</a>
+                            </li>
+                            <li>
+                                <a href="/admin/cases">案件一覧</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Non-collapsing right-side icons -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/common/logout" type="button" class="btn btn-default btn-lg">ログアウト</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+
+    <div id="searchPage" class="container">
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="searchForm" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="searchUsername" class="col-sm-2 control-label">
+                                    氏名</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="searchUsername" placeholder="" required>
+                                </div>
+                                <label for="searchEmail" class="col-sm-2 control-label">
+                                    メールアドレス</label>
+                                <div class="col-sm-4">
+                                    <input type="email" class="form-control" id="searchEmail" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="corpname" class="col-sm-2 control-label">
+                                    企業名</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="corpname" placeholder="" required>
+                                </div>
+                                <label class="col-sm-2 control-label">
+                                    状態</label>
+                                <div class="col-sm-4">
+                                    <label class="radio-inline" for="statusOK">
+                                        <input type="radio" name="status" id="statusOK">有効</label>
+                                    <label class="radio-inline" for="statusNG" >
+                                        <input type="radio" name="status" id="statusNG">無効</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-lg" style="width:150px">
+                                        検索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="addAdmin" class="col-sm-6 text-left" style="height:82px; padding-top:28px"><a class="btn btn-primary" href="#">管理者追加</a></div>
+            <div class="col-sm-6 text-right">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="searchResult" class="row">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>氏名</th>
+                    <th>所属</th>
+                    <th>最後ログイン時間</th>
+                    <th>状態</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="the-username">保サ　太郎</td>
+                    <td class="the-corpname">本社</td>
+                    <td class="the-lastLogin">2016/07/07 12:34</td>
+                    <td class="the-status">有効</td>
+                    <td><a class="update" href="#">変更</a></td>
+                </tr>
+                <tr>
+                    <td>保サ　次郎</td>
+                    <td>本社</td>
+                    <td>2016/07/07 12:34</td>
+                    <td>有効</td>
+                    <td><a class="update" href="#">変更</a></td>
+                </tr>
+                <tr>
+                    <td>保サ　三郎</td>
+                    <td>本社</td>
+                    <td>2016/07/07 12:34</td>
+                    <td>有効</td>
+                    <td><a class="update" href="#">変更</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <form id="detailForm" style="display: none;">
+
+                <input class="hidden" type="hidden" value="${user.id!}" name="userId">
+                <div class="form-group row">
+                    <label for="username" class="col-xs-2 col-form-label">ユーザ名</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-xs-2 col-form-label">Eメール</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" method="put">更新</button>
+                <button type="submit" class="btn btn-danger" method="delete">削除</button>
+                <a id="cancel" class="btn btn-warning" href="#">キャンセル</a>
+                <button type="submit" class="btn btn-primary" method="post">追加</button>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.form.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            // UI
+            $('#addAdmin').click(showDetail);
+            $('#cancel').click(hideDetail);
+
+            $('#searchResult').on('click', '.update', function () {
+                var $row = $(this).closest('tr');
+                showDetail();
+                copyInfoToForm($row, $('#detailForm'));
+            });
+
+            // others
+            function copyInfoToForm($row, $detailForm) {
+                $('#username', $detailForm).val( $('.the-username', $row).text() );
+            }
+
+            function showDetail() {
+                $('#searchPage').hide();
+                $('#detailForm').show().resetForm();
+            }
+            function hideDetail() {
+                $('#searchPage').show();
+                $('#detailForm').hide();
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

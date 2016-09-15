@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>システム管理者</title>
+    <title>保サ課管理</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/logo-nav.css" rel="stylesheet">
@@ -41,21 +42,21 @@
                         <form id="searchForm" class="form-horizontal" role="form">
                             <div class="form-group">
                                 <label for="searchUsername" class="col-sm-2 control-label">
-                                    保サ課</label>
+                                    保サ課名</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="searchUsername" placeholder="" required>
+                                    <input type="text" class="form-control" id="searchUsername" placeholder="" >
                                 </div>
                                 <label for="searchEmail" class="col-sm-2 control-label">
                                     メールアドレス</label>
                                 <div class="col-sm-4">
-                                    <input type="email" class="form-control" id="searchEmail" placeholder="" required>
+                                    <input type="email" class="form-control" id="searchEmail" placeholder="" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="corpname" class="col-sm-2 control-label">
-                                    保サ課ID</label>
+                                    保サ課</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="corpname" placeholder="" required>
+                                    <input type="text" class="form-control" id="corpname" placeholder="" >
                                 </div>
                                 <label class="col-sm-2 control-label">
                                     ログイン</label>
@@ -78,106 +79,78 @@
             </div>
         </div>
 
+        <div class="row"><a id="addRow" href="#">保サ課追加</a></div>
         <div class="row">
-            <div id="addAdmin" class="col-sm-6 text-left" style="height:82px; padding-top:28px"><a class="btn btn-primary" href="#">保サ課追加</a></div>
-            <div class="col-sm-6 text-right">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div id="searchResult" class="row">
-            <table class="table table-sm">
+
+            <table id="searchResult" data-url="/admin/hosa/list" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th>氏名</th>
-                    <th>所属</th>
-                    <th>最後ログイン時間</th>
-                    <th>ログイン</th>
+                    <th data-name="username">保サ課名</th>
+                    <th data-name="hosakaId">保サ課ID</th>
+                    <th data-name="caseNumber">取扱案件数</th>
+                    <th data-name="lastLoginTime">最後ログイン時間</th>
+                    <th data-name="loginStatus">ログイン</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td class="the-username"><a class="update" href="#"> 保サ　太郎</a></td>
-                    <td class="the-corpname">本社</td>
-                    <td class="the-lastLogin">2016/07/07 12:34</td>
-                    <td>許可</td>
-                </tr>
-                <tr>
-                    <td class="the-username"><a class="update" href="#"> 保サ　次郎</a></td>
-                    <td>本社</td>
-                    <td>2016/07/07 12:34</td>
-                    <td>許可</td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
-            <form id="detailForm" style="display:none">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="detailForm" style="display:none">
 
-                <input class="hidden" type="hidden" value="${user.id!}" name="userId">
-                <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">氏名(必須)</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">ログインID(必須)</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">パスワード(必須)</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">所属</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">ログイン</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-xs-2 col-form-label">メールアドレス</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
-                    </div>
-                </div>
+                            <input class="hidden" type="hidden" value="${user.id!}" name="userId">
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">保サ課名(必須)</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">保サ課コード(必須)</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">メールアドレス</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">パスワード</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="department">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">ログイン</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="loginstatus">
+                                </div>
+                            </div>
 
-                <button type="submit" class="btn btn-primary" method="put">更新</button>
-                <button type="submit" class="btn btn-danger" method="delete">削除</button>
-                <a id="cancel" class="btn btn-warning" href="#">キャンセル</a>
-                <button type="submit" class="btn btn-primary" method="post">追加</button>
 
-            </form>
+                            <div class="text-center" id="updateGroup">
+                                <button type="submit" class="btn btn-primary" method="put">更新</button>　
+                                <button data-group="update" type="submit" class="btn btn-danger" method="delete">削除</button>　
+                                <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
+                            </div>
+                            <div class="text-center" id="addGroup">
+                                <button type="submit" class="btn btn-primary" method="post">追加</button>　
+                                <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -190,16 +163,50 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/string.js"></script>
+
+    <!-- Paging -->
+    <script type="text/javascript" src="datatables/1.10.12/js/datatables.js"></script>
+    <script type="text/javascript" src="datatables/my.datatables.js"></script>
+
+    <!-- mock for UI dev -->
+    <script src="js/jquery.mockjax.min.js"></script>
     <script src="js/my.mock.js"></script>
+
     <script>
         $(function () {
             // UI
-            $('#addAdmin').click(showDetail);
-            $('#cancel').click(hideDetail);
+            $.myDataTable({
+                "columnDefs": [
+                    {
+                        // https://datatables.net/examples/advanced_init/column_render.html
+                        "render": function ( data, type, row ) {
+                            return '<a class="update" href="#">' + data +'</a>';
+                        },
+                        "targets": 0
+                    },
+                    {
+                        // https://datatables.net/examples/advanced_init/column_render.html
+                        "render": function ( data, type, row ) {
+                            return '<a class="update1" href="#">' + data +'</a>';
+                        },
+                        "targets": 1
+                    },
+                    {
+                        // https://datatables.net/examples/advanced_init/column_render.html
+                        "render": function ( data, type, row ) {
+                            return '<a class="update2" href="#">' + data +'</a>';
+                        },
+                        "targets": 2
+                    },
+                ]
+            });
+
+            $('#addRow').click(showDetail);
+            $('.groupCancel').click(hideDetail);
 
             $('#searchResult').on('click', '.update', function () {
                 var $row = $(this).closest('tr');
-                showDetail();
+                showDetail("update");
                 copyInfoToForm($row, $('#detailForm'));
                 return false;
             });
@@ -209,9 +216,17 @@
                 $('#username', $detailForm).val( $('.the-username', $row).text() );
             }
 
-            function showDetail() {
+            function showDetail(mode) {
                 $('#searchPage').hide();
+
                 $('#detailForm').show().resetForm();
+                if (mode==='update') {
+                    $('#updateGroup').show();
+                    $('#addGroup').hide()
+                } else {
+                    $('#updateGroup').hide();
+                    $('#addGroup').show()
+                }
             }
             function hideDetail() {
                 $('#searchPage').show();

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>システム管理者</title>
+    <title>管理者管理</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -79,10 +79,10 @@
             </div>
         </div>
 
-        <div class="row"><a id="addAdmin" href="#">管理者追加</a></div>
+        <div class="row"><a id="addRow" href="#">管理者追加</a></div>
         <div class="row">
 
-            <table id="searchResult" data-url="/admin/list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="searchResult" data-url="/admin/admin/list" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                     <th data-name="username">氏名</th>
@@ -141,12 +141,12 @@
                             </div>
 
                             <div class="text-center" id="updateGroup">
-                                <button type="submit" class="btn btn-primary" method="put">更新</button>
-                                <button data-group="update" type="submit" class="btn btn-danger" method="delete">削除</button>
+                                <button type="submit" class="btn btn-primary" method="put">更新</button>　
+                                <button data-group="update" type="submit" class="btn btn-danger" method="delete">削除</button>　
                                 <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
                             </div>
                             <div class="text-center" id="addGroup">
-                                <button type="submit" class="btn btn-primary" method="post">追加</button>
+                                <button type="submit" class="btn btn-primary" method="post">追加</button>　
                                 <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
 
                             </div>
@@ -191,7 +191,7 @@
                 ]
             });
 
-            $('#addAdmin').click(showDetail);
+            $('#addRow').click(showDetail);
             $('.groupCancel').click(hideDetail);
 
             $('#searchResult').on('click', '.update', function () {

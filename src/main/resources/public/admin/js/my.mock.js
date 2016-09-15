@@ -40,13 +40,17 @@ $(function () {
 
     // mock ajax
     $.mockjax({
-        url: "/admin/list",
-        responseText: genMockData("umte", 10)
+        url: "/admin/admin/list",
+        responseText: genMockData("umtk", 10)
+    });
+    $.mockjax({
+        url: "/admin/hosa/list",
+        responseText: genMockData("uintk", 10)
     });
 
 
     // formatStr:
-    // u - user; m - message text; t - timestamp; e - email
+    // u - user; m - message text; t - timestamp; e - email; i - ID; n - a number; k - 許可、拒否
     function genMockData (formatStr, number) {
         var rows = [];
         for (var n = 0; n < number; n++) {
@@ -67,6 +71,15 @@ $(function () {
                         break;
                     case 'e':
                         row.push('email_'+n+'@gmail.com');
+                        break;
+                    case 'i':
+                        row.push('ID_'+n);
+                        break;
+                    case 'n':
+                        row.push(n);
+                        break;
+                    case 'k':
+                        row.push('許可');
                         break;
                 }
             }

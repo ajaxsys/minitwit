@@ -141,10 +141,12 @@
                 <div class="text-center" id="updateGroup">
                     <button type="submit" class="btn btn-primary" method="put">更新</button>
                     <button data-group="update" type="submit" class="btn btn-danger" method="delete">削除</button>
-                    <a data-group="update" id="cancel" class="btn btn-warning" href="#">キャンセル</a>
+                    <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
                 </div>
                 <div class="text-center" id="addGroup">
                     <button type="submit" class="btn btn-primary" method="post">追加</button>
+                    <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
+
                 </div>
 
             </form>
@@ -176,7 +178,7 @@
             $.myDataTable();
 
             $('#addAdmin').click(showDetail);
-            $('#cancel').click(hideDetail);
+            $('.groupCancel').click(hideDetail);
 
             $('#searchResult').on('click', '.update', function () {
                 var $row = $(this).closest('tr');

@@ -1,8 +1,7 @@
-$.myDataTable = function () {
+$.myDataTable = function (newOptions) {
 
     var searchResult = $('#searchResult');
-
-    var $table = searchResult.DataTable( {
+    var defaultOption = {
         // Use bootstrap customize: https://datatables.net/examples/advanced_init/dom_multiple_elements.html
         // "dom" : '<"row"<"col-sm-4"i><"col-sm-2"l><"col-sm-6 text-right"p>> <"row"<"col-sm-12"t>>',
         "dom" : '<"row"<"col-sm-6 text-left"i><"col-sm-6 text-right"p>><"row"<"col-sm-12"t>>',
@@ -26,8 +25,11 @@ $.myDataTable = function () {
             // "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Japanese.json"
             "url": "datatables/1.10.12/i18n/Japanese.json"
         }
-    });
+    };
+    var options = $.extend({}, defaultOption, newOptions);
 
+
+    var $table = searchResult.DataTable(options);
     $('#searchForm').submit(function(){
 
         $(':input', this).each(function(){

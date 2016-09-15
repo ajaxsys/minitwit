@@ -175,7 +175,17 @@
     <script>
         $(function () {
             // UI
-            $.myDataTable();
+            $.myDataTable({
+                "columnDefs": [
+                    {
+                        // https://datatables.net/examples/advanced_init/column_render.html
+                        "render": function ( data, type, row ) {
+                            return '<a class="update" href="#">' + data +'</a>';
+                        },
+                        "targets": 0
+                    }
+                ]
+            });
 
             $('#addAdmin').click(showDetail);
             $('.groupCancel').click(hideDetail);

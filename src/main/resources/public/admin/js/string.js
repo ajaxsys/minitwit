@@ -220,7 +220,7 @@ string.js - Copyright (C) 2012-2014, JP Richardson <jprichardson@gmail.com>
     },
 
     isNumeric: function() {
-      return !/[^0-9]/.test(this.s);
+      return this.s.length > 0 && !/[^0-9]/.test(this.s);
     },
 
     isUpper: function() {

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>システム管理者</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/logo-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div include="parts_menu.html"></div>
+
+
+    <!-- Page Content -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="4">設問１</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">本サービスの満足度をお教えてください。</td>
+                            <td>回答数</td>
+                            <td>割合</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>満足</td>
+                            <td class="each_num" data-color="greed">9</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ほぼ満足</td>
+                            <td class="each_num" data-color="blue">5</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>普通</td>
+                            <td class="each_num" data-color="black">3</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>やや不満</td>
+                            <td class="each_num" data-color="yellow">2</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>不満</td>
+                            <td class="each_num" data-color="red">1</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2">合計（単一回答）</th>
+                            <th class="all_num"></th>
+                            <th>100%</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <canvas id="myChart" width="100%"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.form.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/string.js"></script>
+    <script src="js/my.mock.js"></script>
+    <script>
+        $(function () {
+            // UI
+
+            function calculate() {
+                var count = 0,
+                    data = [], labels = [], backgroundColor = [];
+
+                $('.each_num').each(function () {
+                    var eachNum = $(this).text();
+                    if (eachNum.isNumeric()) {
+                        var num = eachNum.toInt();
+                        count += num;
+
+                        data.push(num);
+                        labels.push($(this).prev().text());
+                        backgroundColor.push($(this).data('color'));
+                    }
+                });
+                $('.each_num').each(function () {
+                    var eachNum = $(this).text();
+                    if (eachNum.isNumeric()) {
+                        $(this).next().text(
+                                Math.round(eachNum.toInt() * 100 /count) + '%' );
+                    }
+                });
+                // pie
+                var ctx = $('#myChart');
+                var myPieChart = new Chart(ctx,{
+                    'type': 'pie',
+                    'data': {
+                        'labels': labels,
+                        'datasets': [{
+                            'data': data,
+                            // ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                            'backgroundColor': [
+                                'rgba(75, 192, 192, 0.2)', // Green
+                                'rgba(54, 162, 235, 0.2)', // Blue
+                                'rgba(153, 102, 255, 0.2)', // Purple
+                                'rgba(255, 206, 86, 0.2)', // Yellow
+                                'rgba(255, 99, 132, 0.2)', // Red
+                            ],
+                            'borderColor': [
+                                'rgba(75, 192, 192, 1)',// Green
+                                'rgba(54, 162, 235, 1)',// Blue
+                                'rgba(153, 102, 255, 1)', // Purple
+                                'rgba(255, 206, 86, 1)',// Yellow
+                                'rgba(255,99,132,1)',    // Red
+                            ],
+                            'borderWidth': 1
+                        }]
+                    }
+                });
+
+                $('.all_num').text(count);
+            }
+
+            calculate();
+
+        })
+
+    </script>
+
+</body>
+
+</html>

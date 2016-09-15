@@ -44,19 +44,19 @@
                                 <label for="searchUsername" class="col-sm-2 control-label">
                                     氏名</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="searchUsername" placeholder="" required>
+                                    <input type="text" class="form-control" id="searchUsername" placeholder="" >
                                 </div>
                                 <label for="searchEmail" class="col-sm-2 control-label">
                                     メールアドレス</label>
                                 <div class="col-sm-4">
-                                    <input type="email" class="form-control" id="searchEmail" placeholder="" required>
+                                    <input type="email" class="form-control" id="searchEmail" placeholder="" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="corpname" class="col-sm-2 control-label">
                                     企業名</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="corpname" placeholder="" required>
+                                    <input type="text" class="form-control" id="corpname" placeholder="" >
                                 </div>
                                 <label class="col-sm-2 control-label">
                                     ログイン</label>
@@ -97,52 +97,58 @@
 
     <div class="container">
         <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
             <form id="detailForm" style="display:none">
 
                 <input class="hidden" type="hidden" value="${user.id!}" name="userId">
                 <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">氏名(必須)</label>
-                    <div class="col-xs-10">
+                    <label for="username" class="col-xs-4 col-form-label">氏名(必須)</label>
+                    <div class="col-xs-8">
                         <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">ログインID(必須)</label>
-                    <div class="col-xs-10">
+                    <label for="username" class="col-xs-4 col-form-label">ログインID(必須)</label>
+                    <div class="col-xs-8">
                         <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">パスワード(必須)</label>
-                    <div class="col-xs-10">
+                    <label for="username" class="col-xs-4 col-form-label">パスワード(必須)</label>
+                    <div class="col-xs-8">
                         <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="pw">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">所属</label>
-                    <div class="col-xs-10">
+                    <label for="username" class="col-xs-4 col-form-label">所属</label>
+                    <div class="col-xs-8">
                         <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="department">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">ログイン</label>
-                    <div class="col-xs-10">
+                    <label for="username" class="col-xs-4 col-form-label">ログイン</label>
+                    <div class="col-xs-8">
                         <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="loginstatus">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email" class="col-xs-2 col-form-label">メールアドレス</label>
-                    <div class="col-xs-10">
+                    <label for="email" class="col-xs-4 col-form-label">メールアドレス</label>
+                    <div class="col-xs-8">
                         <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" method="put">更新</button>
-                <button type="submit" class="btn btn-danger" method="delete">削除</button>
-                <a id="cancel" class="btn btn-warning" href="#">キャンセル</a>
-                <button type="submit" class="btn btn-primary" method="post">追加</button>
+                <div class="text-center" id="updateGroup">
+                    <button type="submit" class="btn btn-primary" method="put">更新</button>
+                    <button data-group="update" type="submit" class="btn btn-danger" method="delete">削除</button>
+                    <a data-group="update" id="cancel" class="btn btn-warning" href="#">キャンセル</a>
+                </div>
+                <div class="text-center" id="addGroup">
+                    <button type="submit" class="btn btn-primary" method="post">追加</button>
+                </div>
 
             </form>
+            </div>
         </div>
     </div>
 
@@ -174,7 +180,7 @@
 
             $('#searchResult').on('click', '.update', function () {
                 var $row = $(this).closest('tr');
-                showDetail();
+                showDetail("update");
                 copyInfoToForm($row, $('#detailForm'));
                 return false;
             });
@@ -184,9 +190,17 @@
                 $('#username', $detailForm).val( $('.the-username', $row).text() );
             }
 
-            function showDetail() {
+            function showDetail(mode) {
                 $('#searchPage').hide();
+
                 $('#detailForm').show().resetForm();
+                if (mode==='update') {
+                    $('#updateGroup').show();
+                    $('#addGroup').hide()
+                } else {
+                    $('#updateGroup').hide();
+                    $('#addGroup').show()
+                }
             }
             function hideDetail() {
                 $('#searchPage').show();

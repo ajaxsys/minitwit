@@ -109,31 +109,21 @@
                     <th>氏名</th>
                     <th>所属</th>
                     <th>最後ログイン時間</th>
-                    <th>状態</th>
-                    <th></th>
+                    <th>ログイン</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="the-username">保サ　太郎</td>
+                    <td class="the-username"><a class="update" href="#"> 保サ　太郎</a></td>
                     <td class="the-corpname">本社</td>
                     <td class="the-lastLogin">2016/07/07 12:34</td>
-                    <td class="the-status">有効</td>
-                    <td><a class="update" href="#">変更</a></td>
+                    <td>許可</td>
                 </tr>
                 <tr>
-                    <td>保サ　次郎</td>
+                    <td class="the-username"><a class="update" href="#"> 保サ　次郎</a></td>
                     <td>本社</td>
                     <td>2016/07/07 12:34</td>
-                    <td>有効</td>
-                    <td><a class="update" href="#">変更</a></td>
-                </tr>
-                <tr>
-                    <td>保サ　三郎</td>
-                    <td>本社</td>
-                    <td>2016/07/07 12:34</td>
-                    <td>有効</td>
-                    <td><a class="update" href="#">変更</a></td>
+                    <td>許可</td>
                 </tr>
                 </tbody>
             </table>
@@ -142,17 +132,41 @@
 
     <div class="container">
         <div class="row">
-            <form id="detailForm" style="display: none;">
+            <form id="detailForm" style="display:none">
 
                 <input class="hidden" type="hidden" value="${user.id!}" name="userId">
                 <div class="form-group row">
-                    <label for="username" class="col-xs-2 col-form-label">ユーザ名</label>
+                    <label for="username" class="col-xs-2 col-form-label">氏名(必須)</label>
                     <div class="col-xs-10">
                         <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email" class="col-xs-2 col-form-label">Eメール</label>
+                    <label for="username" class="col-xs-2 col-form-label">ログインID(必須)</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-xs-2 col-form-label">パスワード(必須)</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-xs-2 col-form-label">所属</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-xs-2 col-form-label">ログイン</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-xs-2 col-form-label">メールアドレス</label>
                     <div class="col-xs-10">
                         <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
                     </div>
@@ -187,6 +201,7 @@
                 var $row = $(this).closest('tr');
                 showDetail();
                 copyInfoToForm($row, $('#detailForm'));
+                return false;
             });
 
             // others

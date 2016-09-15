@@ -4,7 +4,8 @@ $.myDataTable = function () {
 
     var $table = searchResult.DataTable( {
         // Use bootstrap customize: https://datatables.net/examples/advanced_init/dom_multiple_elements.html
-        "dom" : '<"row"<"col-sm-4"i><"col-sm-2"l><"col-sm-6"p>> <"row"<"col-sm-12"t>>',
+        // "dom" : '<"row"<"col-sm-4"i><"col-sm-2"l><"col-sm-6 text-right"p>> <"row"<"col-sm-12"t>>',
+        "dom" : '<"row"<"col-sm-6 text-left"i><"col-sm-6 text-right"p>><"row"<"col-sm-12"t>>',
         // use data-* tag instead
         /* "columnDefs": [
          { "name": "username", "targets": 0 },

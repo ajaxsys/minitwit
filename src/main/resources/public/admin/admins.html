@@ -27,73 +27,8 @@
 </head>
 
 <body>
+    <div include="./part/menu.html"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="images/logo.png" alt="">
-                </a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/admin/admins">管理者管理</a>
-                    </li>
-                    <li>
-                        <a href="/admin/hosas">保サ管理</a>
-                    </li>
-                    <li>
-                        <a href="/admin/distributors">代理店管理</a>
-                    </li>
-                    <li class="menu-item dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            工場管理
-                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/admin/workshops">工場</a>
-                            </li>
-                            <li>
-                                <a href="/admin/staffs">工場員</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            お客様管理
-                            <span class="glyphicon glyphicon-triangle-bottom"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/admin/customers">お客様一覧</a>
-                            </li>
-                            <li>
-                                <a href="/admin/cases">案件一覧</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <!-- Non-collapsing right-side icons -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/common/logout" type="button" class="btn btn-default btn-lg">ログアウト</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
 
     <!-- Page Content -->
 
@@ -240,6 +175,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/string.js"></script>
+    <script src="js/my.mock.js"></script>
     <script>
         $(function () {
             // UI

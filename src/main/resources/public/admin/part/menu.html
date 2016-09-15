@@ -1,0 +1,75 @@
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="">
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="menu-item dropdown dropdown-submenu">
+                    <a href="/admin/admins">管理者管理<span class="glyphicon glyphicon-menu-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/admin/feedback-summary">アンケート集計</a>
+                        </li>
+                        <li>
+                            <a href="/admin/acount-unlock">工場員</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/hosas">保サ課管理</a>
+                </li>
+                <li>
+                    <a href="/admin/distributors">代理店管理</a>
+                </li>
+                <li class="menu-item dropdown dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        工場管理
+                        <span class="glyphicon glyphicon-menu-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/admin/workshops">工場</a>
+                        </li>
+                        <li>
+                            <a href="/admin/staffs">工場員</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item dropdown dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        お客様管理
+                        <span class="glyphicon glyphicon-menu-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/admin/customers">お客様一覧</a>
+                        </li>
+                        <li>
+                            <a href="/admin/cases">案件一覧</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Non-collapsing right-side icons -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/common/logout" type="button" class="btn btn-default btn-lg">ログアウト</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>

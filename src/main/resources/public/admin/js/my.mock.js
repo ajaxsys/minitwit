@@ -47,10 +47,15 @@ $(function () {
         url: "/admin/hosa/list",
         responseText: genMockData("uintk", 10)
     });
+    $.mockjax({
+        url: "/admin/case/list",
+        responseText: genMockData("iuuaayyskk", 10)
+    });
 
 
     // formatStr:
-    // u - user; m - message text; t - timestamp; e - email; i - ID; n - a number; k - 許可、拒否
+    // u - user; m - message text; t - timestamp; e - email; i - ID; n - a number; k - 許可、拒否; y - yyyy/mm/dd;
+    // a - address;
     function genMockData (formatStr, number) {
         var rows = [];
         for (var n = 0; n < number; n++) {
@@ -63,11 +68,17 @@ $(function () {
                     case 'u':
                         row.push('保サ　太郎' + n);
                         break;
+                    case 'a':
+                        row.push('新宿区');
+                        break;
                     case 'm':
                         row.push('太郎からのメッセージテキスト' + n);
                         break;
                     case 't':
                         row.push(formatYMDHMS(new Date(2016, 1, 1, 1, 1, 1 + n)));
+                        break;
+                    case 'y':
+                        row.push(formatYMD(new Date(2016, 1, 1 + n)));
                         break;
                     case 'e':
                         row.push('email_'+n+'@gmail.com');
@@ -96,8 +107,8 @@ $(function () {
     };
 
 
-    function formatYMDHMS(date) {
-        var dateFormat = {
+    function dateFormater() {
+        return {
             fmt : {
                 "yyyy": function(date) { return date.getFullYear() + ''; },
                 "MM": function(date) { return ('0' + (date.getMonth() + 1)).slice(-2); },
@@ -113,8 +124,13 @@ $(function () {
                 return result;
             }
         };
+    }
 
-        return dateFormat.format(date, 'yyyyMMdd hh:mm:ss');
+    function formatYMD(date) {
+        return dateFormater().format(date, 'yyyy/MM/dd');
+    }
+    function formatYMDHMS(date) {
+        return dateFormater().format(date, 'yyyyMMdd hh:mm:ss');
     }
 
 

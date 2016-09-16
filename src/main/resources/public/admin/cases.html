@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>管理者管理</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/logo-nav.css" rel="stylesheet">
+    <style type="text/css">
+        label.uiNotRequire {
+            font-weight: normal !important;
+        }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div include="parts_menu.html"></div>
+
+
+    <!-- Page Content -->
+
+    <div class="uiSearchPage container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="uiSearchForm form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="searchUsername" class="col-sm-2 control-label">
+                                    お客様名</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="searchUsername" placeholder="" >
+                                </div>
+                                <label for="searchEmail" class="col-sm-2 control-label">
+                                    保サ課</label>
+                                <div class="col-sm-4">
+                                    <input type="email" class="form-control" id="searchEmail" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-lg" style="width:150px">
+                                        検索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row"><a class="uiAddRow" href="#">案件追加</a></div>
+        <div class="row">
+
+            <table data-url="/admin/case/list" class="uiSearchResult table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th data-name="username">案件ID</th>
+                    <th data-name="department">お客様</th>
+                    <th data-name="lastLoginTime">保サ課</th>
+                    <th data-name="lastLoginTime">代理店</th>
+                    <th data-name="lastLoginTime">工場</th>
+                    <th data-name="lastLoginTime">入庫日</th>
+                    <th data-name="lastLoginTime">納車完了日</th>
+                    <th data-name="lastLoginTime">ステータス</th>
+                    <th data-name="loginStatus">ログイン</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div class="uiDetailPage container" style="display:none">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="detailForm">
+
+                            <div class="well"><strong>太字は必須項目</strong></div>
+
+                            <input class="hidden" type="hidden" value="${user.id!}" name="userId">
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">お客さま名</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="uiNotRequire col-xs-4 col-form-label">ふりがな</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="uiNotRequire col-xs-4 col-form-label">フリガナ</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="uiNotRequire col-xs-4 col-form-label">アルファベット</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">お客さま電話番号</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="uiNotRequire col-xs-4 col-form-label">お客さまメールアドレス</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">保サ課</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="uiNotRequire col-xs-4 col-form-label">担当保サ課 の方のお名前</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="uiNotRequire col-xs-4 col-form-label">代理店</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">工場</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="pw">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">事故番号形式</label>
+                                <div class="col-xs-8">
+                                    <label class="radio-inline" for="statusOK">
+                                        <input type="radio" name="status" id="statusOK">SJNK</label>
+                                    <label class="radio-inline" for="statusNG" >
+                                    <input type="radio" name="status" id="statusNG">NK</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">事故番号</label>
+                                <div class="col-xs-2">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="loginstatus">
+                                </div>
+                                <div class="col-xs-2">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="loginstatus">
+                                </div>
+                                <div class="col-xs-2">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="loginstatus">
+                                </div>
+                                <div class="col-xs-2">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="loginstatus">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">車メーカー</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">車両</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">区分</label>
+                                <div class="col-xs-8">
+                                    <label class="radio-inline" for="flag1">
+                                        <input type="radio" name="flag" id="flag1">車両</label>
+                                    <label class="radio-inline" for="flag2" >
+                                        <input type="radio" name="flag" id="flag2">対物</label>
+                                    <label class="radio-inline" for="flag3" >
+                                        <input type="radio" name="flag" id="flag3">他</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">車両登録番号</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="uiNotRequire col-xs-4 col-form-label">備考</label>
+                                <div class="col-xs-8">
+                                    <textarea class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">案件表示</label>
+                                <div class="col-xs-8">
+                                    <label class="radio-inline" for="show1">
+                                        <input type="radio" name="caseShow" id="show1">SJNK</label>
+                                    <label class="radio-inline" for="show2" >
+                                        <input type="radio" name="caseShow" id="show2">NK</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">登録通知</label>
+                                <div class="col-xs-8">
+                                    <input type="checkbox" name="notify" id="notify1">
+                                </div>
+                            </div>
+
+
+                            <div class="uiUpdateGroup text-center">
+                                <button type="submit" class="btn btn-primary" method="put">更新</button>　
+                                <button type="submit" class="btn btn-danger" method="delete">削除</button>　
+                                <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
+                            </div>
+                            <div class="uiAddGroup text-center">
+                                <button type="submit" class="btn btn-primary" method="post">登録</button>　
+                                <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.form.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/string.js"></script>
+
+    <!-- Paging -->
+    <script type="text/javascript" src="datatables/1.10.12/js/datatables.js"></script>
+    <script type="text/javascript" src="datatables/my.datatables.js"></script>
+
+    <!-- mock for UI dev -->
+    <script src="js/jquery.mockjax.min.js"></script>
+    <script src="js/my.mock.js"></script>
+
+    <script>
+        $(function () {
+            // UI
+            $.myDataTable({
+                "columnDefs": [
+                    {
+                        // https://datatables.net/examples/advanced_init/column_render.html
+                        "render": function ( data, type, row ) {
+                            return '<a class="update" href="#">' + data +'</a>';
+                        },
+                        "targets": 0
+                    }
+                ]
+            });
+
+            $.myCommonUIEvent();
+
+        })
+
+    </script>
+
+</body>
+
+</html>

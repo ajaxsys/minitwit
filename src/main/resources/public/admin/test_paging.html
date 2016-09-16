@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <form id="searchForm">
+        <form class="uiSearchForm">
             <label for="username">ユーザ名</label><input id="username" type="text" data-name="username" value="userxxx"><br>
             <label for="email"></label>メール</label><input id="email" type="text" data-name="email" value="useryyy@"><br>
             <input id="btnSearch" type="submit" value="検索">
@@ -18,7 +18,7 @@
     </div>
     <hr>
     <div class="row">
-        <table id="searchResult" data-url="/message/paging" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table class="uiSearchResult table table-striped table-bordered" data-url="/message/paging" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th data-name="username">ユーザ名</th>

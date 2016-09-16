@@ -30,7 +30,7 @@ $.myDataTable = function (newOptions) {
 
 
     var $table = searchResult.DataTable(options);
-    $('uiSearchForm').submit(function(){
+    $('.uiSearchForm').submit(function(){
 
         $(':input', this).each(function(){
             var val = $.trim($(this).val());

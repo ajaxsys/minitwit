@@ -365,7 +365,6 @@
     <script>
         $(function () {
             // UI
-
             $('#lightSlider').lightSlider({
                 gallery: true,
                 item: 1,
@@ -373,8 +372,6 @@
                 slideMargin: 0,
                 thumbItem: 9
             });
-
-
 
             $("a.grouped_elements").fancybox({
                 openEffect  : 'none',
@@ -395,17 +392,11 @@
                         height : 50
                     }
                 },
-
                 afterLoad : function() {
                     var comment = '<b>Image</b> ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
 
                     this.title = $('#btnTemplate').html().replace('{{comment}}', comment);
-                },
-//            afterShow : function () {
-//                var myContent = '<div id="myContent">{my html content here}</div>';
-//                $(".fancybox-wrap").append( $('#btnTemplate').html() );
-//            }
-
+                }
             });
 
         })

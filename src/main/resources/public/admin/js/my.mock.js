@@ -9,6 +9,9 @@ $(function () {
         if (window.location.href.indexOf('minitwit') >= 0) {
             $('a').each(function () {
                 var href = $(this).attr('href');
+                if (!href) {
+                    return;
+                }
 
                 href = href.replace(/^\/admin/g, '.');
 

@@ -51,103 +51,291 @@
             <a class="col-xs-4 text-center" href="#"><strong><u>進捗状況確認</u></strong></a>
             <a class="col-xs-4 text-center" href="#">工場担当者確認</a>
         </div>
+
         <div class="uiDetailOfProcess row">
             <form id="detailFormSchedule">
                 <input class="hidden" type="hidden" value="${user.id!}" name="userId">
-                <div class="row top-buffer">
-                    <span class="label label-primary">修理後の様子</span>
-                </div>
-                <div class="row col-sm-8 col-sm-offset-2 text-center">
-                    <ul id="lightSlider">
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-2.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-3.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-4.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-5.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-5.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-6.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-6.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-7.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-7.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-8.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-9.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-10.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-11.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" />
-                        </li>
-                        <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-13.jpg">
-                            <img src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" />
-                        </li>
-                    </ul>
+
+                <div class="statusFinish row">
+                    <div class="top-buffer">
+                        <span class="label label-primary">修理後の様子</span>
+                    </div>
+                    <div class="col-sm-8 col-sm-offset-2 text-center">
+                        <ul id="lightSlider">
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-1.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-1.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-2.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-2.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-3.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-3.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-4.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-4.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-5.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-5.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-6.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-6.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-7.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-7.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-8.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-8.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-9.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-9.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-10.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-10.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-11.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-12.jpg" />
+                            </li>
+                            <li data-thumb="http://sachinchoolur.github.io/lightslider/img/thumb/cS-13.jpg">
+                                <img src="http://sachinchoolur.github.io/lightslider/img/cS-13.jpg" />
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="row">
-                </div>
                 <hr>
 
-                <div class="row top-buffer">
-                    <span class="label label-primary">お客ケンシロウ様の修理状況</span>
-                </div>
-                <div class="row text-center">
-                    <div class="col-sm-2">
-                        <a class="btn btn-default">入庫準備中</a>
-                        <span class="glyphicon glyphicon-arrow-right"></span>
+                <div class="statusOnProcess row">
+                    <div class="top-buffer">
+                        <span class="label label-primary">お客ケンシロウ様の修理状況</span>
                     </div>
+                    <div class="text-center">
+                        <div class="col-sm-2">
+                            <a class="btn btn-default">入庫準備中</a>
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                        </div>
 
-                    <div class="col-sm-8">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                修理中
-                            </div>
-                            <div class="panel-body">
-                                <div>
-                                    <div class="col-sm-3 form-inline">
-                                        <a class="btn btn-default">作業準備中</a>
-                                        <span class="glyphicon glyphicon-arrow-right"></span>
-                                    </div>
-                                    <div class="col-sm-3 form-inline">
-                                        <a class="btn btn-default">板金作業中</a>
-                                        <span class="glyphicon glyphicon-arrow-right"></span>
-                                    </div>
-                                    <div class="col-sm-3 form-inline">
-                                        <a class="btn btn-default">塗装作業中</a>
-                                        <span class="glyphicon glyphicon-arrow-right"></span>
-                                    </div>
-                                    <div class="col-sm-3 form-inline">
-                                        <a class="btn btn-default">仕上作業中</a>
+                        <div class="col-sm-8">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    修理中
+                                </div>
+                                <div class="panel-body">
+                                    <div>
+                                        <div class="col-sm-3 form-inline">
+                                            <a class="btn btn-default">作業準備中</a>
+                                            <span class="glyphicon glyphicon-arrow-right"></span>
+                                        </div>
+                                        <div class="col-sm-3 form-inline">
+                                            <a class="btn btn-default">板金作業中</a>
+                                            <span class="glyphicon glyphicon-arrow-right"></span>
+                                        </div>
+                                        <div class="col-sm-3 form-inline">
+                                            <a class="btn btn-default">塗装作業中</a>
+                                            <span class="glyphicon glyphicon-arrow-right"></span>
+                                        </div>
+                                        <div class="col-sm-3 form-inline">
+                                            <a class="btn btn-default">仕上作業中</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-2 form-inline">
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                            <a class="btn btn-default">修理完了</a>
+                        </div>
                     </div>
-                    <div class="col-sm-2 form-inline">
-                        <span class="glyphicon glyphicon-arrow-right"></span>
-                        <a class="btn btn-default">修理完了</a>
+                    <div class="text-center col-sm-8 col-sm-offset-2">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>初回コンタクト日</td>
+                                <td>2016/07/07</td>
+                                <td>入庫予定日</td>
+                                <td>2016/07/07</td>
+                                <td>修理完了予定日</td>
+                                <td>2016/07/07</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>入庫完了日</td>
+                                <td>2016/07/07</td>
+                                <td>修理完了完了</td>
+                                <td>2016/07/07</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <hr>
+
+                <div class="statusOnProcess row">
+                    <div class=" top-buffer">
+                        <span class="label label-primary">修理中の様子</span>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="col-sm-2">
+                            <a class="btn btn-default">入庫準備中写真</a>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div class="col-sm-3">
+                                <a class="grouped_elements"
+                                   data-fancybox-group="gallery"
+                                   href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                    <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                                <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="grouped_elements"
+                                   data-fancybox-group="gallery"
+                                   href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                    <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                                <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="grouped_elements"
+                                   data-fancybox-group="gallery"
+                                   href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                    <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                                <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="grouped_elements"
+                                   data-fancybox-group="gallery"
+                                   href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                    <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                                <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="grouped_elements"
+                                   data-fancybox-group="gallery"
+                                   href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                    <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                                <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="text-center">
+                    <div class="col-sm-2">
+                        <a class="btn btn-default">修理中写真</a>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="col-sm-3">
+                            <a class="grouped_elements"
+                               data-fancybox-group="gallery"
+                               href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                            <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="grouped_elements"
+                               data-fancybox-group="gallery"
+                               href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                            <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="grouped_elements"
+                               data-fancybox-group="gallery"
+                               href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                            <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="grouped_elements"
+                               data-fancybox-group="gallery"
+                               href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                            <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="grouped_elements"
+                               data-fancybox-group="gallery"
+                               href="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" title="13">
+                                <img src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" width="100%" ></a>
+                            <p>The .img-thumbnail class creates a thumbnail of the image:</p>
+                        </div>
                     </div>
                 </div>
 
             </form>
         </div>
+
+
+
+        <hr>
+
+
+        <div class="uiDetailOfContact row">
+            <div class=" top-buffer">
+                <span class="label label-primary">修理担当者</span>
+            </div>
+
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>工場</th>
+                        <td>第二京浜工場</td>
+                        <td rowspan="3">
+                            <div style="width: 160px; height: 200px; border: 3px solid black; margin: 0px auto;">
+                                <img id="uploadPhoto" style="height: 170px;" src="images/uploadPhoto.png" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>担当者名</th>
+                        <td>工場 ケンタロウ</td>
+                    </tr>
+                    <tr>
+                        <th>連絡先</th>
+                        <td>kenta@xxxx.xxxx.earth</td>
+                    </tr>
+                    <tr>
+                        <th>電話番号</th>
+                        <td>03-0000-2222</td>
+                        <td>コメントコメント<br>コメントコメント</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+
+
     </div>
 
     <!-- /.container -->
+    <script type="text/template" id="btnTemplate">
+        <div class="">
+            <div class="row text-center">
+                <p>
+                    <input type="file" id="myFileInput" style="display:none;" onchange="readURL(this);" />
+                    <a type="button" href="#" onclick="document.getElementById('myFileInput').click()">写真を変更</a>
+                </p>
+            </div>
+
+            <div class="row text-center">
+                <p>
+                    {{comment}}
+                </p>
+            </div>
+
+            <div class="row text-center">
+                <p>
+                    <button type="submit" class="btn btn-primary" method="put">更新</button>
+                    <button type="submit" class="btn btn-danger" method="delete">削除</button>
+                </p>
+            </div>
+        </div>
+    </script>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -195,7 +383,7 @@
                 prevEffect : 'none',
                 nextEffect : 'none',
 
-                closeBtn  : false,
+                closeBtn  : true,
 
                 helpers : {
                     title : {

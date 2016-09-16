@@ -15,7 +15,10 @@ $(function () {
 
                 href = href.replace(/^\/admin/g, '.');
 
-                if (!href.endsWith('.html') && !href.endsWith('/') && !href.contains('#')) {
+                if (!href.endsWith('.html') && !href.endsWith('/') &&
+                    !href.endsWith('.jpg') && !href.endsWith('.png')  &&
+                    !href.contains('#')) {
+
                     href += '.html';
                 }
 

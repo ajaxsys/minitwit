@@ -12,7 +12,7 @@ $(function () {
 
                 href = href.replace(/^\/admin/g, '.');
 
-                if (!href.endsWith('.html') && !href.endsWith('#')) {
+                if (!href.endsWith('.html') && !href.endsWith('/') && !href.contains('#')) {
                     href += '.html';
                 }
 

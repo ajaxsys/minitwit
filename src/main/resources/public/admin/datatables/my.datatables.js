@@ -1,6 +1,6 @@
 $.myDataTable = function (newOptions) {
 
-    var searchResult = $('#searchResult');
+    var searchResult = $('.uiSearchResult');
     var defaultOption = {
         // Use bootstrap customize: https://datatables.net/examples/advanced_init/dom_multiple_elements.html
         // "dom" : '<"row"<"col-sm-4"i><"col-sm-2"l><"col-sm-6 text-right"p>> <"row"<"col-sm-12"t>>',
@@ -30,7 +30,7 @@ $.myDataTable = function (newOptions) {
 
 
     var $table = searchResult.DataTable(options);
-    $('#searchForm').submit(function(){
+    $('uiSearchForm').submit(function(){
 
         $(':input', this).each(function(){
             var val = $.trim($(this).val());
@@ -47,4 +47,47 @@ $.myDataTable = function (newOptions) {
         return false;
     });
 
-}
+};
+
+
+$.myCommonUIEvent = function() {
+
+    $('.uiAddRow').click(showDetail);
+    $('.uiGroupCancel').click(hideDetail);
+
+    $('.uiSearchResult').on('click', '.update', function () {
+
+        var $targetForm = $('.uiDetailForm');
+        if ($targetForm.length > 1) {
+            $targetForm = $($(this).data('targetForm')); // customize the form while multiple form
+        }
+
+        var $row = $(this).closest('tr');
+        showDetail("update");
+        copyInfoToForm($row, $targetForm);
+        return false;
+    });
+
+    // others
+    function copyInfoToForm($row, $detailForm) {
+        $('#username', $detailForm).val( $('.the-username', $row).text() );
+    }
+
+    function showDetail(mode) {
+        $('.uiSearchPage').hide();
+        $('.uiDetailPage').show();
+        $('.uiDetailForm').resetForm();
+
+        if (mode==='update') {
+            $('.uiUpdateGroup').show();
+            $('.uiAddGroup').hide()
+        } else {
+            $('.uiUpdateGroup').hide();
+            $('.uiAddGroup').show()
+        }
+    }
+    function hideDetail() {
+        $('.uiSearchPage').show();
+        $('.uiDetailPage').hide();
+    }
+};

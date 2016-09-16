@@ -33,13 +33,12 @@
 
     <!-- Page Content -->
 
-    <div id="searchPage" class="container">
-
+    <div class="uiSearchPage container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form id="searchForm" class="form-horizontal" role="form">
+                        <form class="uiSearchForm form-horizontal" role="form">
                             <div class="form-group">
                                 <label for="searchUsername" class="col-sm-2 control-label">
                                     氏名</label>
@@ -79,10 +78,10 @@
             </div>
         </div>
 
-        <div class="row"><a id="addRow" href="#">管理者追加</a></div>
+        <div class="row"><a class="uiAddRow" href="#">管理者追加</a></div>
         <div class="row">
 
-            <table id="searchResult" data-url="/admin/admin/list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table data-url="/admin/admin/list" class="uiSearchResult table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                     <th data-name="username">氏名</th>
@@ -95,12 +94,12 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="uiDetailPage container" style="display:none">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form id="detailForm" style="display:none">
+                        <form id="detailForm">
 
                             <input class="hidden" type="hidden" value="${user.id!}" name="userId">
                             <div class="form-group row">
@@ -140,15 +139,14 @@
                                 </div>
                             </div>
 
-                            <div class="text-center" id="updateGroup">
+                            <div class="uiUpdateGroup text-center">
                                 <button type="submit" class="btn btn-primary" method="put">更新</button>　
-                                <button data-group="update" type="submit" class="btn btn-danger" method="delete">削除</button>　
-                                <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
+                                <button type="submit" class="btn btn-danger" method="delete">削除</button>　
+                                <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
                             </div>
-                            <div class="text-center" id="addGroup">
-                                <button type="submit" class="btn btn-primary" method="post">追加</button>　
-                                <a class="btn btn-warning groupCancel" href="#">キャンセル</a>
-
+                            <div class="uiAddGroup text-center">
+                                <button type="submit" class="btn btn-primary" method="post">登録</button>　
+                                <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
                             </div>
 
                         </form>
@@ -191,37 +189,8 @@
                 ]
             });
 
-            $('#addRow').click(showDetail);
-            $('.groupCancel').click(hideDetail);
+            $.myCommonUIEvent();
 
-            $('#searchResult').on('click', '.update', function () {
-                var $row = $(this).closest('tr');
-                showDetail("update");
-                copyInfoToForm($row, $('#detailForm'));
-                return false;
-            });
-
-            // others
-            function copyInfoToForm($row, $detailForm) {
-                $('#username', $detailForm).val( $('.the-username', $row).text() );
-            }
-
-            function showDetail(mode) {
-                $('#searchPage').hide();
-
-                $('#detailForm').show().resetForm();
-                if (mode==='update') {
-                    $('#updateGroup').show();
-                    $('#addGroup').hide()
-                } else {
-                    $('#updateGroup').hide();
-                    $('#addGroup').show()
-                }
-            }
-            function hideDetail() {
-                $('#searchPage').show();
-                $('#detailForm').hide();
-            }
         })
 
     </script>

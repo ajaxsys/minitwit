@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>保サ課管理</title>
+    <title>工場管理</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
                         <form class="uiSearchForm form-horizontal" role="form">
                             <div class="form-group">
                                 <label for="searchUsername" class="col-sm-2 control-label">
-                                    保サ課名</label>
+                                    工場名</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="searchUsername" placeholder="" >
                                 </div>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="corpname" class="col-sm-2 control-label">
-                                    保サ課</label>
+                                    電話番号<br>（FCコード）</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="corpname" placeholder="" >
                                 </div>
@@ -79,17 +79,18 @@
             </div>
         </div>
 
-        <div class="row"><a class="uiAddRow" href="#">保サ課追加</a></div>
+        <div class="row"><a class="uiAddRow" href="#">工場追加</a></div>
         <div class="row">
 
             <table data-url="/admin/hosa/list" class="uiSearchResult table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th data-name="username">保サ課名</th>
-                    <th data-name="hosakaId">保サ課ID</th>
+                    <th data-name="username">工場名</th>
+                    <th data-name="hosakaId">電話番号（FCコード）</th>
                     <th data-name="caseNumber">取扱案件数</th>
                     <th data-name="lastLoginTime">最後ログイン時間</th>
                     <th data-name="loginStatus">ログイン</th>
+                    <th data-name="contactPreson">工場担当者情報</th>
                 </tr>
                 </thead>
             </table>
@@ -105,13 +106,13 @@
 
                             <input class="hidden" type="hidden" value="${user.id!}" name="userId">
                             <div class="form-group row">
-                                <label for="username" class="col-xs-4 col-form-label">保サ課名(必須)</label>
+                                <label for="username" class="col-xs-4 col-form-label">工場名(必須)</label>
                                 <div class="col-xs-8">
                                     <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="username" class="col-xs-4 col-form-label">保サ課コード(必須)</label>
+                                <label for="username" class="col-xs-4 col-form-label">電話番号<br>（FCコード）</label>
                                 <div class="col-xs-8">
                                     <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="userid">
                                 </div>
@@ -128,21 +129,25 @@
                                     <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="department">
                                 </div>
                             </div>
+                            <!-- FIXME No login?
                             <div class="form-group row">
                                 <label for="username" class="col-xs-4 col-form-label">ログイン</label>
                                 <div class="col-xs-8">
                                     <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="loginstatus">
                                 </div>
                             </div>
-
+                            -->
 
                             <div class="uiUpdateGroup text-center">
                                 <button type="submit" class="btn btn-primary" method="put">更新</button>　
+                                <button class="uiAddContactPerson btn btn-primary" type="submit" method="delete">担当者情報編集</button>　
                                 <button type="submit" class="btn btn-danger" method="delete">削除</button>　
                                 <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
                             </div>
+
                             <div class="uiAddGroup text-center">
                                 <button type="submit" class="btn btn-primary" method="post">登録</button>　
+                                <button class="uiUpdateContactPerson btn btn-primary" type="submit" method="delete">担当者情報追加</button>　
                                 <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
                             </div>
 
@@ -186,17 +191,10 @@
                     {
                         // https://datatables.net/examples/advanced_init/column_render.html
                         "render": function ( data, type, row ) {
-                            return '<a class="update1" href="#">' + data +'</a>';
+                            return '<a class="update1" href="#' + row[1] + '">変更</a>';
                         },
-                        "targets": 1
-                    },
-                    {
-                        // https://datatables.net/examples/advanced_init/column_render.html
-                        "render": function ( data, type, row ) {
-                            return '<a class="update2" href="#">' + data +'</a>';
-                        },
-                        "targets": 2
-                    },
+                        "targets": 5
+                    }
                 ]
             });
 

@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <div class="row"><a class="uiAddRow" href="#">案件追加</a></div>
+        <div class="row"><a class="uiAddRow btn btn-warning" href="#">案件追加</a></div>
         <div class="row">
 
             <table data-url="/admin/case/list" class="uiSearchResult table table-striped table-bordered" cellspacing="0" width="100%">
@@ -90,14 +90,16 @@
     </div>
 
     <div class="uiDetailPage container" style="display:none">
-        <div class="row">
+        <div class="row well">
+            <a class="col-xs-4 text-center" href="#"><u>登録内容</u></a>
+            <a class="col-xs-4 text-center" href="#">進捗状況確認</a>
+            <a class="col-xs-4 text-center" href="#">工場担当者確認</a>
+        </div>
+        <div class="uiDetailOfContent row">
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <form id="detailForm">
-
-                            <div class="well"><strong>太字は必須項目</strong></div>
-
                             <input class="hidden" type="hidden" value="${user.id!}" name="userId">
                             <div class="form-group row">
                                 <label for="username" class="col-xs-4 col-form-label">お客さま名</label>
@@ -234,6 +236,8 @@
                                     <input type="checkbox" name="notify" id="notify1">
                                 </div>
                             </div>
+                            <div class="well"><strong>太字は必須項目</strong></div>
+
 
 
                             <div class="uiUpdateGroup text-center">

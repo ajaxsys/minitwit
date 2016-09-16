@@ -106,9 +106,9 @@
 
                             <input class="hidden" type="hidden" value="${user.id!}" name="userId">
                             <div class="form-group row">
-                                <label for="username" class="col-xs-4 col-form-label">工場名(必須)</label>
+                                <label for="workshop" class="col-xs-4 col-form-label">工場名(必須)</label>
                                 <div class="col-xs-8">
-                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="workshop" id="workshop">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -118,15 +118,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="email" class="col-xs-4 col-form-label">メールアドレス</label>
+                                <label for="contactEmail" class="col-xs-4 col-form-label">メールアドレス</label>
                                 <div class="col-xs-8">
-                                    <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                                    <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="contactEmail" id="contactEmail">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="username" class="col-xs-4 col-form-label">パスワード</label>
+                                <label for="contactPw" class="col-xs-4 col-form-label">パスワード</label>
                                 <div class="col-xs-8">
-                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="department">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="contactPw" id="contactPw">
                                 </div>
                             </div>
                             <!-- FIXME No login?
@@ -140,15 +140,82 @@
 
                             <div class="uiUpdateGroup text-center">
                                 <button type="submit" class="btn btn-primary" method="put">更新</button>　
-                                <button class="uiAddContactPerson btn btn-primary" type="submit" method="delete">担当者情報編集</button>　
+                                <button class="uiAddContactPerson btn btn-primary" type="button" method="delete">担当者情報編集</button>　
                                 <button type="submit" class="btn btn-danger" method="delete">削除</button>　
                                 <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
                             </div>
 
                             <div class="uiAddGroup text-center">
                                 <button type="submit" class="btn btn-primary" method="post">登録</button>　
-                                <button class="uiUpdateContactPerson btn btn-primary" type="submit" method="delete">担当者情報追加</button>　
+                                <button class="uiUpdateContactPerson btn btn-primary" type="button" method="delete">担当者情報追加</button>　
                                 <a class="uiGroupCancel btn btn-warning" href="#">キャンセル</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="uiContactPersonPage container" style="display:none">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="uiDetailForm">
+
+                            <input class="hidden" type="hidden" value="${user.id!}" name="userId">
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">工場名(必須)</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="username" id="username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="contactName" class="col-xs-4 col-form-label">担当者名</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="contactName" id="contactName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="tel" class="col-xs-4 col-form-label">電話番号</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" value="" pattern=".{1,}" required title="１文字以上が必須" name="tel" id="tel">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-4 col-form-label">メールアドレス</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="search" value="" pattern=".{6,}" required title="６文字以上が必須" name="email" id="email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-xs-4 col-form-label">顔写真</label>
+                                <div class="col-xs-8">
+                                    <div class="">
+                                        <div class="row text-center">
+                                            <div style="width: 160px; height: 200px; border: 3px solid black; margin: 0px auto;">
+                                                <img id="uploadPhoto" style="height: 170px;" src="images/uploadPhoto.png" />
+                                            </div>
+                                            <p>
+                                                <input type="file" id="myFileInput" style="display:none;" onchange="$.readImage( this, $('#uploadPhoto') );" />
+                                                <a type="button" href="#" onclick="document.getElementById('myFileInput').click()">写真を選択</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="comment" class="col-xs-4 col-form-label">コメント</label>
+                                <div class="col-xs-8">
+                                    <textarea class="form-control" type="search" title="６文字以上が必須" name="email" id="comment"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="uiAddGroup text-center">
+                                <button type="submit" class="btn btn-primary" method="post">登録</button>　
+                                <a class="uiContactPersonCancel btn btn-warning" href="#">キャンセル</a>
                             </div>
 
                         </form>
@@ -199,6 +266,16 @@
             });
 
             $.myCommonUIEvent();
+
+            // customize
+            $('.uiAddContactPerson, .uiUpdateContactPerson').click(function() {
+                $('.uiDetailPage').hide();
+                $('.uiContactPersonPage').show();
+            });
+            $('.uiContactPersonCancel').click(function () {
+                $('.uiDetailPage').show();
+                $('.uiContactPersonPage').hide();
+            })
         })
 
     </script>

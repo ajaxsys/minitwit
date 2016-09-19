@@ -21,14 +21,17 @@ import spark.Response;
 public
 class DataTables {
 
+    @FunctionalInterface
     public interface IGetPagingResult<E> {
         List<E> apply(int start, int length);
     }
+    @FunctionalInterface
     public interface IEachResult<E> {
         void apply(
             E result,
             JSONArray rowJson);
     }
+    @FunctionalInterface
     public interface IGetPagingCount {
         int apply();
     }

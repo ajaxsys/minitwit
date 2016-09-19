@@ -66,9 +66,9 @@ public class MiniTwitService {
     public List<Message> getMessagesByPage(
         int start,
         int length,
-        User searchConditon) {
+        User searchCondition) {
 
-        return messageDao.getMessagesByPage(start, length, searchConditon);
+        return messageDao.getMessagesByPage(start, length, searchCondition);
     }
 
     @Deprecated
@@ -79,9 +79,9 @@ public class MiniTwitService {
     }
 
     public int getMessageCount(
-        User searchConditon) {
+        User searchCondition) {
 
-        return messageDao.getMessageCount(searchConditon);
+        return messageDao.getMessageCount(searchCondition);
     }
 
 

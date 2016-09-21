@@ -7,9 +7,7 @@ import org.zeroturnaround.zip.ZipUtil;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class CompressUtil {
